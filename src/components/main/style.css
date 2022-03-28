@@ -144,7 +144,7 @@
   height: 86vh;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
+  padding-bottom: 110px;
   padding-top: 400px;
 }
 .col-2-row-2-msg-dis-player::-webkit-scrollbar {
