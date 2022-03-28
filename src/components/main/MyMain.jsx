@@ -89,6 +89,26 @@ function MyMain() {
                   chat, not even WhatsApp, can read or listen to them. Click to
                   lear more.
                 </p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other msg</p>
+                <p className="my-messages-text mb-0">my message</p>
+                <p className="other-messages-text mb-0">other mseeg</p>
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">
