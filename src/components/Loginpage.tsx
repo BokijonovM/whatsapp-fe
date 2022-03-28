@@ -66,7 +66,6 @@ export default function SignIn() {
           >
             <TextField
               margin="normal"
-              required
               fullWidth
               id="email"
               label="Email Address"
@@ -75,7 +74,6 @@ export default function SignIn() {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"
