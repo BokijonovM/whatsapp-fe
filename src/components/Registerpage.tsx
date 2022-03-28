@@ -21,9 +21,7 @@ function Copyright(props: any) {
       color="text.secondary"
       align="center"
       {...props}
-    >
-     
-    </Typography>
+    ></Typography>
   );
 }
 
@@ -52,7 +50,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "rgb(46, 223, 46)" }}>
-            <WhatsAppIcon />
+            <WhatsAppIcon style={{ fontSize: 35 }} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Register
@@ -68,16 +66,13 @@ export default function SignUp() {
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
-                  
                   fullWidth
                   id="firstName"
                   label="First Name"
-                
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
-                 
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -87,7 +82,6 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                 
                   fullWidth
                   id="email"
                   label="Email Address"
@@ -97,7 +91,6 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
                   fullWidth
                   name="password"
                   label="Password"
@@ -125,9 +118,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/Login" >
-                  Already have an account? Log in
-                </Link>
+                <Link to="/Login">Already have an account? Log in</Link>
               </Grid>
             </Grid>
           </Box>

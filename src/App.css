@@ -1,9 +1,15 @@
 .App {
   text-align: center;
 }
-body{
+body {
   background-image: url("https://fsa.zobj.net/crop.php?r=vbnXSqrOcta66cJT7GDsyGrL4ymmKtw6cXKH11NSAojEU5VS-56iW0RZbWBWttoVLjnNPscucnu_zsT7EaOsZUGryTGrot5ZcJTlVNOGAhhfuhLeICdJowyrw2HVUUrGTaMRgK-MUlQnFm2jB3K3ACsqbu2WuhNTtzadaM12p3VJcyQFNSSrT17BB6ah1zBViWctSquMonUV-bgS");
- 
+}
+* {
+  font-family: "Fredoka", sans-serif !important;
+  font-family: "League Spartan", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .App-logo {

@@ -22,7 +22,6 @@ function Copyright(props: any) {
       align="center"
       {...props}
     >
-    
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -53,11 +52,11 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 3, bgcolor: "rgb(46, 223, 46)",fontsize:"25px" }}>
-            < WhatsAppIcon />
+          <Avatar sx={{ m: 3, bgcolor: "rgb(46, 223, 46)", fontsize: "25px" }}>
+            <WhatsAppIcon style={{ fontSize: 35 }} />
           </Avatar>
           <Typography component="h1" variant="h5">
-           Log in
+            Log in
           </Typography>
           <Box
             component="form"
@@ -73,7 +72,6 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
-             
             />
             <TextField
               margin="normal"
@@ -95,7 +93,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-             Log In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>
@@ -104,9 +102,7 @@ export default function SignIn() {
                 </Link> */}
               </Grid>
               <Grid item>
-                <Link to="/">
-                  {"Don't have an account? Register"}
-                </Link>
+                <Link to="/">{"Don't have an account? Register"}</Link>
               </Grid>
             </Grid>
           </Box>
