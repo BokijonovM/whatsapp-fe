@@ -1,12 +1,9 @@
-import * as actionTypes from "./actionTypes"
 
-export function addUser(user: IUser) {
-  const action: UserAction = {
-    type: actionTypes.ADD_USER,
-    user,
-  }
+export const SET_USER_NAME = 'SET_USER_NAME'
 
-  return simulateHttpRequest(action)
-}
+export const setUsernameAction = (name:string) => ({
+  type: SET_USER_NAME,
+  payload: name,
+})
 
 

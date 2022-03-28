@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from "redux";
-import userReducer from "../reducers";
+import { userReducer } from "../reducers";
 import thunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 declare global {
@@ -12,10 +12,10 @@ const aComposeFunctionThatAlwaysWorks =
 
 export const store = configureStore({
   reducer: {
-    users: userReducer,
+    // users: userReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch; 

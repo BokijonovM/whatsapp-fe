@@ -1,18 +1,20 @@
+import { SET_USER_NAME } from "../actions";
+import { IUser } from "../Types/Interface";
 
+interface State {
+  users: IUser[];
 
-import { RootState } from '../store'
-import { AppDispatch } from '../store'
-
-const userReducer = (state:RootState, action:AppDispatch) => {
- 
+}
+export const userReducer = (state: State, action:any) => {
+  switch (action.type) {
+    case SET_USER_NAME:
       return {
         ...state,
         name: action.payload,
-      }
+        email:action.payload
+      };
 
     default:
-      return state
-  
-}
-
-export default userReducer
+      return state;
+  }
+};

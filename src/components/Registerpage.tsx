@@ -51,11 +51,11 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: "rgb(46, 223, 46)" }}>
             <WhatsAppIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
           <Box
             component="form"
@@ -64,20 +64,20 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
-                  required
+                  
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
+                
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <TextField
-                  required
+                 
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -87,7 +87,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                 
                   fullWidth
                   id="email"
                   label="Email Address"
@@ -97,7 +97,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   name="password"
                   label="Password"
@@ -106,14 +106,14 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -125,8 +125,8 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/Loginpage" >
-                  Already have an account? Sign in
+                <Link to="/Login" >
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>

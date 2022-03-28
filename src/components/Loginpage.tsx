@@ -53,7 +53,7 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 3, bgcolor: "green",fontsize:"25px" }}>
+          <Avatar sx={{ m: 3, bgcolor: "rgb(46, 223, 46)",fontsize:"25px" }}>
             < WhatsAppIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -73,7 +73,7 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+             
             />
             <TextField
               margin="normal"
@@ -85,10 +85,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -99,19 +99,19 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="/" >
+                {/* <Link to="/" >
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
-                <Link to="/Registerpage">
-                  {"Don't have an account? Sign Up"}
+                <Link to="/">
+                  {"Don't have an account? Register"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
