@@ -1,0 +1,100 @@
+.main-row {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+}
+
+.col-1-row-1-1st-header {
+  background-color: rgb(32, 44, 51);
+  height: 60px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-right: 0.2px solid grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+.col-1-row-2-active-users {
+  background-color: rgb(17, 27, 33);
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 92vw;
+  border-right: 0.2px solid grey;
+  display: flex;
+  flex-direction: column;
+}
+.col-2-row-1-2nd-header {
+  background-color: rgb(32, 44, 51);
+  height: 60px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  padding: 0;
+  padding-left: 25px;
+  padding-right: 5px;
+}
+.col-2-row-3-type-msg {
+  background-color: rgb(68, 73, 77);
+  height: 70px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-right: 0.2px solid grey;
+  position: fixed;
+  bottom: 0px !important;
+}
+.col-2-row-2-msg-dis-player {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(11, 20, 26);
+}
+.header-1-all-icons {
+  color: rgb(190, 190, 190);
+  margin: 10px;
+}
+.users-btn-div {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  align-items: center;
+  align-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.users-btn-div:hover {
+  background-color: rgb(41, 52, 58);
+  cursor: pointer;
+}
+.row-form-data-for-search {
+  background-color: rgb(17, 27, 33);
+  border-right: 0.2px solid grey;
+  border-bottom: 0.2px solid grey;
+  width: 100%;
+  margin: 0%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.form-for-search {
+  width: 100% !important;
+  background-color: rgb(39, 47, 53);
+  border-color: grey;
+}
+.form-for-search:focus {
+  background-color: rgb(49, 57, 63);
+  border-color: grey;
+}
