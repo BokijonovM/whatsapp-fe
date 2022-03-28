@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { Row, Col, Form } from "react-bootstrap";
 import Avatar from "@mui/material/Avatar";
@@ -6,10 +6,8 @@ import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
 import MessageIcon from "@mui/icons-material/Message";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
-import logoW from "./whats.png";
 
-function MyMain() {
-  const [selected, setSelected] = useState(false);
+function MyEdit() {
   return (
     <div>
       <Row className="main-row">
@@ -34,47 +32,39 @@ function MyMain() {
             </div>
           </Row>
           <Row className="col-1-row-2-active-users">
-            <div
-              className="users-btn-div"
-              onClick={() => setSelected(!selected)}
-            >
+            <div className="users-btn-div">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <h6 className="text-light mb-0 ml-2"> username surname</h6>
+              <p className="mb-0 msg-sent-time text-muted ml-auto">09:19</p>
+            </div>
+            <div className="users-btn-div">
               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               <h6 className="text-light mb-0 ml-2"> username surname</h6>
               <p className="mb-0 msg-sent-time text-muted ml-auto">09:19</p>
             </div>
           </Row>
         </Col>
-        {selected ? (
-          <Col md={8} className="m-0 p-0">
-            <Row className="col-2-row-1-2nd-header">
-              <div className="d-flex align-items-center">
-                <Avatar
-                  className="mr-2"
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                />
-                <h6 className="mb-0 text-light">username</h6>
-              </div>
-              <div className="d-flex">
-                <SearchIcon className="header-1-all-icons" />
-                <MoreVertIcon className="header-1-all-icons" />
-              </div>
-            </Row>
-            <Row className="col-2-row-2-msg-dis-player"></Row>
-            <Row className="col-2-row-3-type-msg"></Row>
-          </Col>
-        ) : (
-          <Col md={8} className="m-0 p-0">
-            <img
-              className="whatsapp-no-select-yet"
-              src={logoW}
-              alt="whatsapp"
-            />
-          </Col>
-        )}
+        <Col md={8} className="m-0 p-0">
+          <Row className="col-2-row-1-2nd-header">
+            <div className="d-flex align-items-center">
+              <Avatar
+                className="mr-2"
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+              />
+              <h6 className="mb-0 text-light">username</h6>
+            </div>
+            <div className="d-flex">
+              <SearchIcon className="header-1-all-icons" />
+              <MoreVertIcon className="header-1-all-icons" />
+            </div>
+          </Row>
+          <Row className="col-2-row-2-msg-dis-player"></Row>
+          <Row className="col-2-row-3-type-msg"></Row>
+        </Col>
       </Row>
     </div>
   );
 }
 
-export default MyMain;
+export default MyEdit;
