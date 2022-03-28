@@ -46,23 +46,22 @@
   padding-right: 5px;
 }
 .col-2-row-3-type-msg {
-  background-color: rgb(68, 73, 77);
+  background-color: rgb(32, 44, 51);
   height: 70px;
-  max-width: 100%;
-  min-width: 100%;
   margin: 0;
   padding: 0;
   border-right: 0.2px solid grey;
   position: fixed;
   bottom: 0px !important;
+  display: flex;
+  justify-content: space-between;
+  width: 67%;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-.col-2-row-2-msg-dis-player {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(11, 20, 26);
-}
+
 .header-1-all-icons {
   color: rgb(190, 190, 190);
   margin: 10px;
@@ -70,7 +69,7 @@
 .users-btn-div {
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 80px;
   align-items: center;
   align-content: center;
   padding-left: 15px;
@@ -94,11 +93,63 @@
   background-color: rgb(39, 47, 53);
   border-color: grey;
 }
-.form-for-search:focus {
+.form-for-search:focus,
+.form-for-msg:focus {
   background-color: rgb(49, 57, 63);
   border-color: grey;
 }
 .whatsapp-no-select-yet {
   width: 100%;
   height: 100vh;
+}
+.form-for-msg {
+  width: 660px !important;
+  background-color: rgb(39, 47, 53);
+  border-color: grey;
+}
+.today-msg-date-text {
+  background-color: rgb(24, 34, 41);
+  border-radius: 4px;
+  padding: 5px 15px;
+}
+.today-security-info-text {
+  background-color: rgb(24, 34, 41);
+  border-radius: 10px;
+  padding: 5px 15px;
+  color: rgb(197, 197, 2);
+  margin-top: 4px;
+  font-size: 14px;
+}
+.col-2-row-2-msg-dis-player {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(11, 20, 26);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  flex-direction: column;
+  height: 100vh;
+}
+.row__posters {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  padding-top: 300px;
+}
+.col-2-row-2-msg-dis-player::-webkit-scrollbar {
+  display: none;
+}
+.row__posters::-webkit-scrollbar {
+  display: none;
 }

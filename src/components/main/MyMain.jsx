@@ -8,6 +8,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 import logoW from "./whats.png";
 import MySetting from "../settingProfile/MySetting";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import AttachmentIcon from "@mui/icons-material/Attachment";
+import MicIcon from "@mui/icons-material/Mic";
+import LockIcon from "@mui/icons-material/Lock";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
@@ -76,8 +80,29 @@ function MyMain() {
                 <MoreVertIcon className="header-1-all-icons" />
               </div>
             </Row>
-            <Row className="col-2-row-2-msg-dis-player"></Row>
-            <Row className="col-2-row-3-type-msg"></Row>
+            <Row className="col-2-row-2-msg-dis-player">
+              <div className="row__posters">
+                <p className="mb-0 text-light today-msg-date-text">Today</p>
+                <p className="mb-0 today-security-info-text mx-5">
+                  <LockIcon fontSize="small" />
+                  Messages are end-to-end encrypted. No one outside of this
+                  chat, not even WhatsApp, can read or listen to them. Click to
+                  lear more.
+                </p>
+              </div>
+            </Row>
+            <Row className="col-2-row-3-type-msg">
+              <InsertEmoticonIcon className="text-light" />
+              <AttachmentIcon className="text-light" />
+              <Form.Group controlId="formBasicText">
+                <Form.Control
+                  className="form-for-msg  shadow-none"
+                  type="text"
+                  placeholder="Type a message"
+                />
+              </Form.Group>
+              <MicIcon className="text-light" />
+            </Row>
           </Col>
         ) : (
           <Col md={8} className="m-0 p-0">
