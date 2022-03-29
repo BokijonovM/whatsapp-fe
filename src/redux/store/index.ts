@@ -24,12 +24,12 @@ export const groupedReducers = combineReducers({
 });
 
 // const reducerExpireDate = 48 * 60 * 60 * 1000;
-const configPersistance = {
+const configPersistance: any = {
   key: "root",
   storage: localStorage,
   transforms: [
     encryptTransform({
-      secretKey: process.env.REACT_APP_SECRET_PERSIST_KEY,
+      secretKey: process.env.REACT_APP_SECRET_PERSIST_KEY as string,
     }),
   ],
 };
