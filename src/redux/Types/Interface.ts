@@ -19,5 +19,5 @@ export interface IMessage {
   timestamp: number;
 }
 export interface IInitialState {
-  userMe: IUser;
+  user: IUser;
 }

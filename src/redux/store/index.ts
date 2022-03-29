@@ -12,19 +12,11 @@ import { IInitialState } from "../Types/Interface"
 // }
 // const aComposeFunctionThatAlwaysWorks =
 //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const initialState:IInitialState = {
-userMe: {
-    username: "",
-    email: "",
-    avatar: "",
-    refreshToken: "",
-  },
-
-}
+const initialState = {}
 const middleware=[thunk]
 
   const reducers = combineReducers({
-    userMe:userReducer
+    userReducer
   })
 export const store = createStore(
   reducers,
