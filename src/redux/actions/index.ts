@@ -2,6 +2,7 @@ import { ThunkAction,ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux';
 import { RootState } from '../store'
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
+export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 
 export const login = 
 (email:string, password:string)

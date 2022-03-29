@@ -1,11 +1,10 @@
 import { USER_LOGIN_SUCCESS } from "../actions";
-
-export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
+import  {USER_LOGIN_REQUEST } from "../actions"
 
 export interface UserState {
   loading?: boolean;
   error?: string;
-  userInfo: { firstName?: string; lastName?: string };
+  userData: { username?: string; email?: string };
 }
 interface Action {
   type: string;
@@ -20,7 +19,7 @@ export const userReducer = (state: UserState, action: Action) => {
     case USER_LOGIN_SUCCESS:
       return {
         loading: false,
-        userInfo: action.payload,
+        userData: action.payload,
       };
 
     default:

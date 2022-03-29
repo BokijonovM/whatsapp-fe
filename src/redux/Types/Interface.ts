@@ -1,5 +1,5 @@
 export interface IUser {
-  name: string;
+  username: string;
   email: string;
   avatar?: string;
 }
@@ -17,3 +17,7 @@ export interface IMessage {
   };
   timestamp: number;
 }
+export interface IInitialState {
+  userMe: IUser;
+}
+
