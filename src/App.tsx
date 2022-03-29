@@ -1,20 +1,23 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Loginpage } from "./components/Loginpage";
 import { Registerpage } from "./components/Registerpage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MyMain from "./components/main/MyMain";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
         <Routes>
-          <Route path="/" element={<Registerpage />} />
+          <Route path="/" element={<MyMain />} />
+          <Route path="/register" element={<Registerpage />} />
           <Route path="/login" element={<Loginpage />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

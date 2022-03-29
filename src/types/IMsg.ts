@@ -1,0 +1,8 @@
+export interface IMsg {
+  sender: string;
+  timestamp: Date;
+  content: {
+    text: string;
+    media: string;
+  };
+}

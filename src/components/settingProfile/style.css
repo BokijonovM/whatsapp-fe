@@ -1,0 +1,64 @@
+.setting-main-div {
+  width: 100% !important;
+  height: 100vh;
+  transition: all 0.9s ease !important;
+}
+.col-1-row-1-1st-header-1 {
+  background-color: rgb(32, 44, 51);
+  height: 60px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-right: 0.2px solid grey;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+.setting-image-user {
+  width: 160px;
+  height: 160px;
+  border-radius: 50% !important;
+  object-fit: cover;
+}
+.row-2-user-info-cont {
+  background-color: #111b21;
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+.user-full-name-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 15px;
+  border-bottom: 0.1px solid rgb(0, 0, 0);
+}
+.your-name-text {
+  color: #07645d;
+  font-size: 14px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  margin-top: 40px;
+}
+.some-info-text {
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  text-align: start;
+}

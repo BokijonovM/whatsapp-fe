@@ -1,0 +1,187 @@
+.main-row {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+}
+
+.col-1-row-1-1st-header {
+  background-color: rgb(32, 44, 51);
+  height: 60px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-right: 0.2px solid grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+.col-1-row-2-active-users {
+  background-color: rgb(17, 27, 33);
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 92vw;
+  border-right: 0.2px solid grey;
+  display: flex;
+  flex-direction: column;
+}
+.col-2-row-1-2nd-header {
+  background-color: rgb(32, 44, 51);
+  height: 60px;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  padding: 0;
+  padding-left: 25px;
+  padding-right: 5px;
+}
+.col-2-row-3-type-msg {
+  background-color: rgb(32, 44, 51);
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  border-right: 0.2px solid grey;
+  position: fixed;
+  bottom: 0px !important;
+  display: flex;
+  justify-content: space-between;
+  width: 67%;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header-1-all-icons {
+  color: rgb(190, 190, 190);
+  margin: 10px;
+}
+.users-btn-div {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  align-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.users-btn-div:hover {
+  background-color: rgb(41, 52, 58);
+  cursor: pointer;
+}
+.row-form-data-for-search {
+  background-color: rgb(17, 27, 33);
+  border-right: 0.2px solid grey;
+  border-bottom: 0.2px solid grey;
+  width: 100%;
+  margin: 0%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.form-for-search {
+  width: 100% !important;
+  background-color: rgb(39, 47, 53);
+  border-color: grey;
+}
+.form-for-search:focus,
+.form-for-msg:focus {
+  background-color: rgb(49, 57, 63);
+  border-color: grey;
+}
+.whatsapp-no-select-yet {
+  width: 100%;
+  height: 100vh;
+}
+.form-for-msg {
+  width: 50vw !important;
+  background-color: rgb(39, 47, 53);
+  border-color: grey;
+}
+.today-msg-date-text {
+  background-color: rgb(24, 34, 41);
+  border-radius: 4px;
+  padding: 5px 15px;
+}
+.today-security-info-text {
+  background-color: rgb(24, 34, 41);
+  border-radius: 10px;
+  padding: 5px 15px;
+  color: rgb(197, 197, 2);
+  margin-top: 4px;
+  font-size: 14px;
+}
+.col-2-row-2-msg-dis-player {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(11, 20, 26);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  flex-direction: column;
+  height: 100vh;
+}
+.row__posters {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 86vh;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 110px;
+  padding-top: 400px;
+}
+.col-2-row-2-msg-dis-player::-webkit-scrollbar {
+  display: none;
+}
+.row__posters::-webkit-scrollbar {
+  display: none;
+}
+.my-messages-text {
+  margin-left: auto;
+  margin-right: 30px;
+  color: white;
+  background-color: #005c4b;
+  padding: 4px 14px;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom-right-radius: 0;
+}
+.other-messages-text {
+  margin-right: auto;
+  color: white;
+  background-color: #3c3c3e;
+  margin-left: 30px;
+  padding: 4px 14px;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top-left-radius: 0;
+}
+.search-names-in2nd-header {
+  color: white !important;
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: white !important;
+  margin-top: 5px;
+}
+.autocomplete-text-field {
+  margin-top: 2px;
+}
