@@ -12,6 +12,7 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import MicIcon from "@mui/icons-material/Mic";
 import LockIcon from "@mui/icons-material/Lock";
+import MySearch from "./MySearch";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
@@ -76,7 +77,7 @@ function MyMain() {
                 <h6 className="mb-0 text-light">username</h6>
               </div>
               <div className="d-flex">
-                <SearchIcon className="header-1-all-icons" />
+                <MySearch />
                 <MoreVertIcon className="header-1-all-icons" />
               </div>
             </Row>

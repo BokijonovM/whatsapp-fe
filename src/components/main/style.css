@@ -103,7 +103,7 @@
   height: 100vh;
 }
 .form-for-msg {
-  width: 660px !important;
+  width: 50vw !important;
   background-color: rgb(39, 47, 53);
   border-color: grey;
 }
@@ -174,4 +174,14 @@
   margin-top: 5px;
   margin-bottom: 5px;
   border-top-left-radius: 0;
+}
+.search-names-in2nd-header {
+  color: white !important;
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: white !important;
+  margin-top: 5px;
+}
+.autocomplete-text-field {
+  margin-top: 2px;
 }

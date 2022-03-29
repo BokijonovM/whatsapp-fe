@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Row, Col, From } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 function MySetting() {
