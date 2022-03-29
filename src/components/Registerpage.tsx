@@ -25,7 +25,7 @@ export const Registerpage = () => {
     e.preventDefault()
 
     
-    await fetch('http://localhost:3001/api/account', {
+    await fetch('https://whatsapp-clone-epicode.herokuapp.com//users/account', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -75,6 +75,7 @@ const theme = createTheme();
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  onChange ={(e)=>setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -85,6 +86,8 @@ const theme = createTheme();
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e)=>setLastName(e.target.value)}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,6 +98,7 @@ const theme = createTheme();
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -105,6 +109,8 @@ const theme = createTheme();
                   label="Password"
                   type="password"
                   id="password"
+                  onChange ={(e)=>setPassword(e.target.value)}
+
                   autoComplete="new-password"
                 />
               </Grid>
