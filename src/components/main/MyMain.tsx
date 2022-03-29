@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Row, Col, Form } from "react-bootstrap";
 import Avatar from "@mui/material/Avatar";
@@ -13,10 +13,38 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import MicIcon from "@mui/icons-material/Mic";
 import LockIcon from "@mui/icons-material/Lock";
 import MySearch from "./MySearch";
+import { IUser } from "../../types/IUser";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
+  const [myInfo, setMyInfo] = useState<IUser | null>(null);
+  useEffect(() => {
+    const fetchMe = async () => {
+      try {
+        let res = await fetch(
+          `${process.env.REACT_APP_PROD_API_URL}/users/me`,
+          {
+            method: "GET",
+            headers: {
+              authorization:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyZjUzNjE2YmMwMjNmOTRkNzk0ZTQiLCJpYXQiOjE2NDg1NTcwNzAsImV4cCI6MTY0ODU1Nzk3MH0.UxBh78EfB6dRxuyjU2dpi0CmtyDq5d6r0zJFb-8sbRU",
+            },
+          }
+        );
+        if (res.ok) {
+          let data = await res.json();
+          console.log(data);
+          setMyInfo(data.user);
+        } else {
+          console.log("fetch me failed!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMe();
+  }, []);
   return (
     <div>
       <Row className="main-row">
@@ -25,7 +53,7 @@ function MyMain() {
             <Avatar
               onClick={() => setSetting(!setting)}
               alt="Remy Sharp"
-              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              src={myInfo?.avatar}
             />
             <div className="d-flex">
               <RestartAltOutlinedIcon className="header-1-all-icons" />
