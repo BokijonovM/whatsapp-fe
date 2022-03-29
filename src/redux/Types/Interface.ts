@@ -2,6 +2,7 @@ export interface IUser {
   username: string;
   email: string;
   avatar?: string;
+  refreshToken?: string;
 }
 
 export interface IChat {
@@ -20,4 +21,3 @@ export interface IMessage {
 export interface IInitialState {
   userMe: IUser;
 }
-
