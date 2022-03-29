@@ -1,20 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
 import App from "./App";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { persistor } from "./redux/store";
-import { PersistGate } from "redux-persist/integration/react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <Provider store={store}>
-    {/* <PersistGate persistor={persistor}> */}
-    <Container className="m-0 p-0 position-relative" fluid>
-      <App />
-    </Container>
-    {/* </PersistGate> */}
-  </Provider>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById("root")
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
