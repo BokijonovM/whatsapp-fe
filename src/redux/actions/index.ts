@@ -1,9 +1,27 @@
+import {ThunkAction,ThunkDispatch} from 'redux-thunk'
+import { AnyAction } from 'redux';
+import { RootState } from '../store'
+export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 
-export const SET_USER_NAME = 'SET_USER_NAME'
+export const login = 
+(email:string, password:string)
+:ThunkAction<Promise<void>,RootState,unknown,AnyAction > => 
+async (dispatch:ThunkDispatch<RootState,unknown,AnyAction>):Promise<void> => {
+  try {
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+    });
+    await fetch('http://localhost:3001/users/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
 
-export const setUsernameAction = (name:string) => ({
-  type: SET_USER_NAME,
-  payload: name,
-})
-
-
+  } catch (error) {
+    console.log(error)
+  }
+};

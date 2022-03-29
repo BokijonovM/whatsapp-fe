@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,31 +13,20 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../redux/actions";
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+export const Loginpage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(login(email, password));
   };
 
   return (
@@ -60,11 +49,12 @@ export default function SignIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={submitHandler}
             noValidate
             sx={{ mt: 1 }}
           >
             <TextField
+              required
               margin="normal"
               fullWidth
               id="email"
@@ -73,6 +63,7 @@ export default function SignIn() {
               autoComplete="email"
             />
             <TextField
+              required
               margin="normal"
               fullWidth
               name="password"
@@ -109,4 +100,4 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};

@@ -1,17 +1,26 @@
-import { SET_USER_NAME } from "../actions";
-import { IUser } from "../Types/Interface";
+import { USER_LOGIN_SUCCESS } from "../actions";
 
-interface State {
-  users: IUser[];
+export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 
+export interface UserState {
+  loading?: boolean;
+  error?: string;
+  userInfo: { firstName?: string; lastName?: string };
 }
-export const userReducer = (state: State, action:any) => {
+interface Action {
+  type: string;
+  payload?: string;
+}
+export const userReducer = (state: UserState, action: Action) => {
   switch (action.type) {
-    case SET_USER_NAME:
+    case USER_LOGIN_REQUEST:
       return {
-        ...state,
-        name: action.payload,
-        email:action.payload
+        loading: true,
+      };
+    case USER_LOGIN_SUCCESS:
+      return {
+        loading: false,
+        userInfo: action.payload,
       };
 
     default:
