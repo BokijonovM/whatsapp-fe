@@ -11,7 +11,7 @@ async (dispatch:ThunkDispatch<RootState,unknown,AnyAction>):Promise<void> => {
     dispatch({
       type: USER_LOGIN_SUCCESS,
     });
-    await fetch('http://localhost:3001/users/session', {
+    await fetch('https://whatsapp-clone-epicode.herokuapp.com/users/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
