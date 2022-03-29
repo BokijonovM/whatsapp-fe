@@ -1,20 +1,20 @@
 import axios from "axios";
 
-export const setUserData = (payload) => ({
+export const setUserData = (payload: any) => ({
   type: "SET_USER_DATA",
   payload: payload,
 });
 
-export const setUserLogged = (payload) => ({
+export const setUserLogged = (payload: any) => ({
   type: "SET_LOGGED_IN",
 });
-export const setUserLoggedOut = (payload) => ({
+export const setUserLoggedOut = (payload: any) => ({
   type: "SET_LOGGED_OUT",
   payload: payload,
 });
 
-export const setUserLogin = (email, password) => {
-  return async (dispatch, getState) => {
+export const setUserLogin = (email: string, password: string) => {
+  return async (dispatch: any, getState: any) => {
     const baseUrl = `${process.env.REACT_APP_PROD_API_URL}user/login`;
 
     try {
@@ -40,8 +40,14 @@ export const setUserLogin = (email, password) => {
   };
 };
 
-export const registerUser = ({ name, email, password }) => {
-  return async (dispatch) => {
+interface nEOinter {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export const registerUser = ({ name, email, password }: nEOinter) => {
+  return async (dispatch: any) => {
     const baseUrl = `${process.env.REACT_APP_PROD_API_URL}user/register`;
     try {
       let response = await axios.post(
