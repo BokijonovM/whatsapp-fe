@@ -9,7 +9,6 @@ export const ACTIONS = {
   SET_HISTORY: "SET_HISTORY",
   NEW_MESSAGE: "NEW_MESSAGE",
   NEW_CHAT: "NEW_CHAT",
-  INIT_SOCKET: "INIT_SOCKET",
 };
 
 // selected user

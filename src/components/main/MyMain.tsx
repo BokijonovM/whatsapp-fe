@@ -151,7 +151,12 @@ function MyMain() {
                           return (
                             <div
                               key={i}
-                              className="users-btn-div py-3"
+                              className={
+                                selectedUser?.user._id == user._id
+                                  ? "users-btn-divSel py-3"
+                                  : "users-btn-div py-3"
+                              }
+                              // className="users-btn-div py-3"
                               onClick={() => {
                                 dispatch(selectUserAction(user));
                                 setSelected(true);

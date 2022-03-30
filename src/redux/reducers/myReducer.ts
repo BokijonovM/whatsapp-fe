@@ -7,7 +7,6 @@ import {
 } from "../actions";
 import { initialState } from "../store";
 import io from "socket.io-client";
-// import io from "socket.io-client"
 import { ACTIONS } from "../actions/index";
 
 const userReducer = (state = initialState.userMe, action: any) => {
