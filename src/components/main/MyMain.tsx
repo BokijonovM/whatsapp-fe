@@ -34,6 +34,7 @@ function MyMain() {
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
   const [allUsers, setAllUsers] = useState<AUsersArray>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
@@ -120,6 +121,7 @@ function MyMain() {
                 <div className="w-100 px-3">
                   <Form.Group controlId="formBasicText">
                     <Form.Control
+                      onChange={(e) => setSearchName(e.target.value)}
                       className="form-for-search  shadow-none"
                       type="text"
                       placeholder="Search or start new chat"
@@ -177,7 +179,9 @@ function MyMain() {
             </Row>
             <Row className="col-2-row-2-msg-dis-player">
               <div className="row__posters">
-                <p className="mb-0 text-light today-msg-date-text">Today</p>
+                <p className="mb-0 text-light today-msg-date-text">
+                  {Moment(selectedUser.createdAt).format("DD/MM/YYYY")}
+                </p>
                 <p className="mb-0 today-security-info-text mx-5">
                   <LockIcon fontSize="small" />
                   Messages are end-to-end encrypted. No one outside of this

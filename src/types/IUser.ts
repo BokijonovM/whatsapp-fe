@@ -5,7 +5,7 @@ export interface IUser {
   refreshToken: string;
 }
 
-interface userObject {
+export interface userObject {
   username: string;
   email: string;
   avatar: string;
