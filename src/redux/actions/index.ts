@@ -39,30 +39,3 @@ export const setInitSocketAction = (accessToken:string) => ({
   payload : accessToken
 })
 
-export const loggedInAction = (socket: { on: (arg0: string, arg1: () => void) => void; }) => {
-  return(dispatch: (arg0: string) => void) =>{
-    socket.on("loggedIn",() =>{
-      console.log("loggedin")
-      dispatch({type : LOGGED_IN})
-    })
-  }
-}
-
-export const incomingMsgAction = (socket: { on: (arg0: string, arg1: () => void) => void; }) => {
-  return(dispatch: (arg0: string) => void) =>{
-    socket.on("loggedIn",() =>{
-      console.log("loggedin")
-      dispatch({type : INCOMING_MSG})
-    })
-  }
-}
-
-export const disconnectSocketAction = (socket: { on: (arg0: string, arg1: () => void) => void; }) => {
-  return(dispatch: (arg0: string) => void) =>{
-    socket.on("disconnect",() =>{
-      console.log("loggedin")
-      dispatch({type : DISCONNECT_SOCKET})
-    })
-  }
-}
-
