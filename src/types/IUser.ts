@@ -23,9 +23,17 @@ export interface userObject {
   _id: string;
   user: userObject1;
 }
+export interface chatObject {
+user : string,
+_id : string,
+createdAt : string
+}
 
 export interface ISelectedUser {
   user: userObject[];
 }
 
 export type AUsersArray = userObject[];
+export type AChatsArray = chatObject[];
+
+
