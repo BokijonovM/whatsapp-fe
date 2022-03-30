@@ -2,7 +2,7 @@ export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_AVATAR = "SET_USER_AVATAR";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_REFRESH_TOKEN = "SET_USER_REFRESH_TOKEN";
-
+export const INIT_SOCKET = "INIT_SOCKET"
 // selected user
 export const SELECT_USER = "SELECT_USER";
 
@@ -28,3 +28,8 @@ export const selectUserAction = (user: any) => ({
   type: SELECT_USER,
   payload: user,
 });
+
+export const setInitSocketAction = (accessToken:string) => ({
+  type : INIT_SOCKET,
+  payload : accessToken
+})

@@ -16,6 +16,7 @@ export const initialState: IInitialState | any = {
     email: "",
     avatar: "",
     refreshToken: "",
+    socket : ""
   },
   selectedUser: null,
   //chats: []

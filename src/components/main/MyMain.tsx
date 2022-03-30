@@ -21,6 +21,7 @@ import {
   setUserEmailAction,
   setUserRefreshTokenAction,
   selectUserAction,
+  setInitSocketAction,
 } from "../../redux/actions/index";
 import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,6 +51,8 @@ function MyMain() {
       console.log(dataJson);
       fetchMe(dataJson);
       fetchChats(dataJson);
+      
+      dispatch(setInitSocketAction(dataJson))
     }
   }, []);
 

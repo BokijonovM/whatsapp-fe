@@ -3,21 +3,24 @@ import {
   SET_USER_AVATAR,
   SET_USER_EMAIL,
   SET_USER_REFRESH_TOKEN,
+  INIT_SOCKET,
 } from "../actions";
 import { initialState } from "../store";
-// import io from "socket.io-client"
+import io from "socket.io-client"
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
-    //case "INIT_SOCKET":
-    // const socket = io(ADDRESS, { transports: ['websocket'], auth: 'MY_TOKEN'})
-    // initialize your socket listeners.....
-
-    //socket.on("connection")
-    //socket.on("disconnect")
-    //socket.on("incoming-msg")
-
-    //return { ...state, socket}
+     case INIT_SOCKET :
+        const ADDRESS:string = "http://localhost:3001"
+        const socket = io(ADDRESS, { transports: ['websocket'], auth:{token: action.payload} })
+    //     // initialize your socket listeners.....
+        
+    //     // socket.on("connection",()=>{})
+    socket.emit("loggedIn", socket  )
+    //     socket.on("incoming-msg",() =>{})
+    //     socket.on("disconnect", ()=>{})
+        return { ...state, socket}
+    
     case SET_USER_NAME:
       return {
         ...state,

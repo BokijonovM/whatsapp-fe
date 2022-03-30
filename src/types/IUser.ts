@@ -3,6 +3,7 @@ export interface IUser {
   email: string;
   avatar: string;
   refreshToken: string;
+  socket: string
 }
 
 export interface userObject {
