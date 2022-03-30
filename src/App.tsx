@@ -1,11 +1,11 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Loginpage } from "./components/Loginpage";
 import { Registerpage } from "./components/Registerpage";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyMain from "./components/main/MyMain";
+import Loginpage from "./components/Loginpage";
 
 function App() {
   return (
