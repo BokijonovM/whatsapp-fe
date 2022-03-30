@@ -6,6 +6,7 @@ import {
 } from "../actions";
 import { initialState } from "../store";
 // import io from "socket.io-client"
+import { ACTIONS } from "../actions/index";
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
@@ -37,6 +38,18 @@ const userReducer = (state = initialState.userMe, action: any) => {
       return {
         ...state,
         refreshToken: action.payload,
+      };
+    case ACTIONS.SET_ACTIVE_CHAT:
+      return {
+        chatList: action.payload,
+      };
+    case ACTIONS.SET_HISTORY:
+      return {
+        selected: action.payload,
+      };
+    case ACTIONS.NEW_MESSAGE:
+      return {
+        selected: action.payload,
       };
     default:
       return state;
