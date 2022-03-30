@@ -5,7 +5,8 @@ export interface IUser {
   refreshToken: string;
   socket: string;
 }
-export interface userObject1 {
+
+export interface userObjectTest {
   username: string;
   email: string;
   avatar: string;
@@ -21,7 +22,7 @@ export interface userObject {
   createdAt: Date;
   updatedAt: Date;
   _id: string;
-  user: userObject1;
+  user: userObjectTest;
 }
 
 export interface ISelectedUser {

@@ -2,7 +2,16 @@ export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_AVATAR = "SET_USER_AVATAR";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_REFRESH_TOKEN = "SET_USER_REFRESH_TOKEN";
-export const INIT_SOCKET = "INIT_SOCKET"
+export const INIT_SOCKET = "INIT_SOCKET";
+
+export const ACTIONS = {
+  SET_ACTIVE_CHAT: "SET_ACTIVE_CHAT",
+  SET_HISTORY: "SET_HISTORY",
+  NEW_MESSAGE: "NEW_MESSAGE",
+  NEW_CHAT: "NEW_CHAT",
+  INIT_SOCKET: "INIT_SOCKET",
+};
+
 // selected user
 export const SELECT_USER = "SELECT_USER";
 
@@ -29,7 +38,7 @@ export const selectUserAction = (user: any) => ({
   payload: user,
 });
 
-export const setInitSocketAction = (accessToken:string) => ({
-  type : INIT_SOCKET,
-  payload : accessToken
-})
+export const setInitSocketAction = (accessToken: string) => ({
+  type: INIT_SOCKET,
+  payload: accessToken,
+});

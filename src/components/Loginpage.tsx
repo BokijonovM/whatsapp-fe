@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const theme = createTheme();
 
-export const Loginpage = () => {
+const Loginpage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -126,3 +126,4 @@ export const Loginpage = () => {
     </ThemeProvider>
   );
 };
+export default Loginpage;
