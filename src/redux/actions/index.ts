@@ -7,7 +7,7 @@ export const setUsernameAction = (username: string) => ({
   type: SET_USER_NAME,
   payload: username,
 });
-export const setUserSurNameAction = (avatar: string) => ({
+export const setUserAvatarAction = (avatar: string) => ({
   type: SET_USER_AVATAR,
   payload: avatar,
 });
@@ -15,7 +15,7 @@ export const setUserEmailAction = (email: string) => ({
   type: SET_USER_EMAIL,
   payload: email,
 });
-export const setUserPasswordAction = (refreshToken: string) => ({
+export const setUserRefreshTokenAction = (refreshToken: string) => ({
   type: SET_USER_REFRESH_TOKEN,
   payload: refreshToken,
 });

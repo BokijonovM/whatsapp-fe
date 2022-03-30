@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../redux/actions";
+// import { login } from "../redux/actions";
 
 const theme = createTheme();
 
@@ -26,7 +26,37 @@ export const Loginpage = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    // dispatch(login(email, password));
+  };
+  const fetchLogin = async () => {
+    const newPost = {
+      email: email,
+      password: password,
+    };
+    try {
+      let res = await fetch(
+        `${process.env.REACT_APP_PROD_API_URL}/users/session`,
+        {
+          method: "POST",
+          body: JSON.stringify(newPost),
+          headers: { "Content-type": "application/json" },
+        }
+      );
+      if (res.status !== 200) {
+        alert("error not 200");
+      }
+      if (res.ok) {
+        let data = await res.json();
+        localStorage.setItem("MyAToken", data.accessToken);
+        localStorage.setItem("MyRToken", data.accessToken);
+        window.location.href = "/main";
+        console.log("Successfully logged in!");
+      } else {
+        console.log("fetch login failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -61,7 +91,7 @@ export const Loginpage = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
-              onChange ={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               required
@@ -72,33 +102,26 @@ export const Loginpage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange ={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => fetchLogin()}
             >
               Log In
             </Button>
             <Grid container>
-              <Grid item xs>
-                {/* <Link to="/" >
-                  Forgot password?
-                </Link> */}
-              </Grid>
+              <Grid item xs></Grid>
               <Grid item>
-                <Link to="/">{"Don't have an account? Register"}</Link>
+                <Link to="/register">{"Don't have an account? Register"}</Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

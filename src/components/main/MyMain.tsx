@@ -14,37 +14,55 @@ import MicIcon from "@mui/icons-material/Mic";
 import LockIcon from "@mui/icons-material/Lock";
 import MySearch from "./MySearch";
 import { IUser } from "../../types/IUser";
+import { useNavigate } from "react-router-dom";
+import {
+  setUsernameAction,
+  setUserAvatarAction,
+  setUserEmailAction,
+  setUserRefreshTokenAction,
+} from "../../redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const myToken = localStorage.getItem("MyAToken");
+  const dataJson = JSON.parse(JSON.stringify(myToken));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchMe = async () => {
-      try {
-        let res = await fetch(
-          `${process.env.REACT_APP_PROD_API_URL}/users/me`,
-          {
-            method: "GET",
-            headers: {
-              authorization:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyZjUzNjE2YmMwMjNmOTRkNzk0ZTQiLCJpYXQiOjE2NDg1NTcwNzAsImV4cCI6MTY0ODU1Nzk3MH0.UxBh78EfB6dRxuyjU2dpi0CmtyDq5d6r0zJFb-8sbRU",
-            },
-          }
-        );
-        if (res.ok) {
-          let data = await res.json();
-          console.log(data);
-          setMyInfo(data.user);
-        } else {
-          console.log("fetch me failed!");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMe();
+    if (dataJson) {
+      setIsLoggedIn(true);
+      console.log(dataJson);
+      fetchMe(dataJson);
+    }
   }, []);
+
+  const fetchMe = async (token: string) => {
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users/me`, {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        console.log(data);
+        setMyInfo(data.user);
+        dispatch(setUsernameAction(data.user.username));
+        dispatch(setUserAvatarAction(data.user.avatar));
+        dispatch(setUserEmailAction(data.user.email));
+        dispatch(setUserRefreshTokenAction(data.user.refreshToken));
+      } else {
+        console.log("fetch me failed!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <Row className="main-row">

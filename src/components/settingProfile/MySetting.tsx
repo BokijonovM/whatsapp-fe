@@ -3,7 +3,17 @@ import "./style.css";
 import { Row, Col, Form } from "react-bootstrap";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
+import { useDispatch, useSelector } from "react-redux";
+import { IUser } from "../../types/IUser";
+import { IInitialState } from "../../types/initial";
+
 function MySetting() {
+  const username = useSelector(
+    (state) => (state as IInitialState).userMe.username
+  );
+  const avatarMe = useSelector(
+    (state) => (state as IInitialState).userMe.avatar
+  );
   return (
     <div className="setting-main-div">
       <Row className="col-1-row-1-1st-header-1">
@@ -12,14 +22,10 @@ function MySetting() {
       </Row>
       <Row className="justify-content-center row-2-user-info-cont">
         <div className="w-100">
-          <img
-            className="setting-image-user mt-3"
-            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-            alt=""
-          />
+          <img className="setting-image-user mt-3" src={avatarMe} alt="" />
           <p className="mb-0 your-name-text">Your Name</p>
           <div className="user-full-name-div">
-            <h6 className="text-light mb-0">Username</h6>
+            <h6 className="text-light mb-0">{username}</h6>
             <EditIcon className="text-light" />
           </div>
           <div className="">
