@@ -20,26 +20,35 @@ import {
   setUserAvatarAction,
   setUserEmailAction,
   setUserRefreshTokenAction,
+  selectUserAction,
 } from "../../redux/actions/index";
+import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { ISelectedUser } from "../../types/IUser";
-import UsersList from "./UsersList";
+import { AUsersArray } from "../../types/IUser";
+import { IInitialState } from "../../types/initial";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
-  const [allUsers, setAllUsers] = useState<ISelectedUser[] | any[]>([]);
+  const [allUsers, setAllUsers] = useState<AUsersArray>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const selectedUser = useSelector(
+    (state) => (state as IInitialState).selectedUser.user
+  );
   useEffect(() => {
     if (dataJson) {
       setIsLoggedIn(true);
       console.log(dataJson);
       fetchMe(dataJson);
+      fetchChats(dataJson);
     }
   }, []);
 
@@ -67,6 +76,26 @@ function MyMain() {
     }
   };
 
+  const fetchChats = async (token: string) => {
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users`, {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        setAllUsers(data.users);
+        console.log(data);
+        setIsLoading(false);
+      } else {
+        console.log("fetch users failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <Row className="main-row">
@@ -74,7 +103,7 @@ function MyMain() {
           <Row className="col-1-row-1-1st-header">
             <Avatar
               onClick={() => setSetting(!setting)}
-              alt="Remy Sharp"
+              alt="Rem Sharp"
               src={myInfo?.avatar}
             />
             <div className="d-flex">
@@ -98,8 +127,33 @@ function MyMain() {
                   </Form.Group>
                 </div>
               </Row>
-              <Row className="col-1-row-2-active-users">
-                <UsersList />
+              <Row className="col-1-row-2-active-users ">
+                <div className="row__posters-1">
+                  {isLoading
+                    ? ""
+                    : allUsers!.map((user, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="users-btn-div py-3"
+                            onClick={() => {
+                              dispatch(selectUserAction(user));
+                              setSelected(true);
+                            }}
+                          >
+                            <Avatar alt="Remy Sharp" src={user.avatar} />
+                            <h6 className="text-light mb-0 ml-2">
+                              {" "}
+                              {user.username}
+                            </h6>
+                            <p className="mb-0 msg-sent-time text-muted ml-auto">
+                              {Moment(user.updatedAt).format("HH:mm")}
+                              {/* {user.updatedAt} */}
+                            </p>
+                          </div>
+                        );
+                      })}
+                </div>
               </Row>
             </div>
           )}
@@ -112,9 +166,9 @@ function MyMain() {
                 <Avatar
                   className="mr-2"
                   alt="Remy Sharp"
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                  src={selectedUser.avatar}
                 />
-                <h6 className="mb-0 text-light">username</h6>
+                <h6 className="mb-0 text-light">{selectedUser.username}</h6>
               </div>
               <div className="d-flex">
                 <MySearch />

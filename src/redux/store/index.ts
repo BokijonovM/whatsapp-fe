@@ -5,7 +5,7 @@ import { persistReducer, persistStore } from "redux-persist";
 // import encryptTransform from "redux-persist-transform-encrypt";
 import { IInitialState } from "../../types/initial";
 import userReducer from "../reducers/myReducer";
-import selectedUserReducer from "../reducers/SelectedUser";
+import { SingleUserReducer } from "../reducers/SelectedUser";
 
 const aComposeFunctionThatAlwaysWorks =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,15 +18,13 @@ export const initialState: IInitialState = {
     refreshToken: "",
   },
   selectedUser: {
-    username: "",
-    email: "",
-    avatar: "",
+    user: [],
   },
 };
 
 const bigReducer = combineReducers({
   userMe: userReducer,
-  selectedUser: selectedUserReducer,
+  selectedUser: SingleUserReducer,
 });
 
 const configureStore = createStore(
