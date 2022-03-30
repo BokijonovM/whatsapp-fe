@@ -5,9 +5,19 @@ import {
   SET_USER_REFRESH_TOKEN,
 } from "../actions";
 import { initialState } from "../store";
+// import io from "socket.io-client"
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
+    //case "INIT_SOCKET":
+    // const socket = io(ADDRESS, { transports: ['websocket'], auth: 'MY_TOKEN'})
+    // initialize your socket listeners.....
+
+    //socket.on("connection")
+    //socket.on("disconnect")
+    //socket.on("incoming-msg")
+
+    //return { ...state, socket}
     case SET_USER_NAME:
       return {
         ...state,

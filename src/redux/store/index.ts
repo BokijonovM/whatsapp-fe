@@ -17,9 +17,7 @@ export const initialState: IInitialState = {
     avatar: "",
     refreshToken: "",
   },
-  selectedUser: {
-    user: [],
-  },
+  selectedUser: null,
 };
 
 const bigReducer = combineReducers({

@@ -1,7 +1,7 @@
 import { IUser } from "./IUser";
-import { ISelectedUser } from "./IUser";
+import { userObject } from "./IUser";
 
 export interface IInitialState {
   userMe: IUser;
-  selectedUser: ISelectedUser;
+  selectedUser: userObject | null;
 }
