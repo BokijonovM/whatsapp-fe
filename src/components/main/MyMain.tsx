@@ -57,14 +57,8 @@ function MyMain() {
       console.log(dataJson);
       fetchMe(dataJson);
       fetchChats(dataJson);
-      
-      dispatch(setInitSocketAction(dataJson))
 
-      // socket.on("connection",()=>{})
-      //socket.on("sendMsg", )
-      // socket.emit("loggedIn", socket  )
-      // socket.on("incoming-msg",() =>{})
-      // socket.on("disconnect", ()=>{})
+      dispatch(setInitSocketAction(dataJson));
     }
   }, []);
 
@@ -183,9 +177,11 @@ function MyMain() {
                 <Avatar
                   className="mr-2"
                   alt="Remy Sharp"
-                  src={selectedUser?.avatar}
+                  src={selectedUser?.user.avatar}
                 />
-                <h6 className="mb-0 text-light">{selectedUser?.username}</h6>
+                <h6 className="mb-0 text-light">
+                  {selectedUser?.user.username}
+                </h6>
               </div>
               <div className="d-flex">
                 <MySearch />
@@ -195,7 +191,7 @@ function MyMain() {
             <Row className="col-2-row-2-msg-dis-player">
               <div className="row__posters">
                 <p className="mb-0 text-light today-msg-date-text">
-                  {Moment(selectedUser?.createdAt).format("DD/MM/YYYY")}
+                  {Moment(selectedUser?.user.createdAt).format("DD/MM/YYYY")}
                 </p>
                 <p className="mb-0 today-security-info-text mx-5">
                   <LockIcon fontSize="small" />
