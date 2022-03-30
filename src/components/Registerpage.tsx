@@ -24,8 +24,9 @@ export const Registerpage = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    
-    await fetch('https://whatsapp-clone-epicode.herokuapp.com//users/account', {
+    console.log("fetch started")
+    try {
+      await fetch('https://whatsapp-clone-epicode.herokuapp.com/users/account', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -35,6 +36,9 @@ export const Registerpage = () => {
         password,
       }),
     })
+    } catch (error) {
+      console.log(error)
+    }
 
  
   }
@@ -63,7 +67,7 @@ const theme = createTheme();
           <Box
             component="form"
             noValidate
-            onSubmit={submitHandler }
+            onSubmit={(e:any)=>submitHandler(e) }
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
