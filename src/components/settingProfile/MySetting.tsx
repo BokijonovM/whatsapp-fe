@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { Row, Col, Form } from "react-bootstrap";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -6,14 +6,43 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
+import CheckIcon from "@mui/icons-material/Check";
+import { AUsersArray } from "../../types/IUser";
 
-function MySetting() {
+function MySetting({ dataJson }: any) {
   const username = useSelector(
     (state) => (state as IInitialState).userMe.username
   );
   const avatarMe = useSelector(
     (state) => (state as IInitialState).userMe.avatar
   );
+  const [isChangeName, setIsChangeName] = useState<boolean>(false);
+  const [newName, setNewName] = useState<string>(`${username}`);
+
+  const handleChangeName = async () => {
+    const newUserName = {
+      username: newName as string,
+    };
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users/me`, {
+        method: "PUT",
+        body: JSON.stringify(newUserName),
+        headers: {
+          authorization: dataJson,
+          "Content-type": "application/json",
+        },
+      });
+      if (res.ok) {
+        console.log("done");
+        setIsChangeName(false);
+        window.location.href = "/main";
+      } else {
+        console.log("edit error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="setting-main-div">
       <Row className="col-1-row-1-1st-header-1">
@@ -24,10 +53,32 @@ function MySetting() {
         <div className="w-100">
           <img className="setting-image-user mt-3" src={avatarMe} alt="" />
           <p className="mb-0 your-name-text">Your Name</p>
-          <div className="user-full-name-div">
-            <h6 className="text-light mb-0">{username}</h6>
-            <EditIcon className="text-light" />
-          </div>
+          {isChangeName ? (
+            <div className="user-full-name-div">
+              <Form.Group controlId="formBasicText">
+                <Form.Control
+                  className="shadow-none border-0 bg-transparent pl-0 my-n2"
+                  type="text"
+                  placeholder={username}
+                  onChange={(e) => setNewName(e.target.value)}
+                  defaultValue={username}
+                />
+              </Form.Group>
+              <CheckIcon
+                className="text-light"
+                onClick={() => handleChangeName()}
+              />
+            </div>
+          ) : (
+            <div className="user-full-name-div">
+              <h6 className="text-light mb-0">{username}</h6>
+              <EditIcon
+                className="text-light"
+                onClick={() => setIsChangeName(true)}
+              />
+            </div>
+          )}
+
           <div className="">
             <p className="mb-0 text-light some-info-text">
               This is not your username or pin. this name will be visible to

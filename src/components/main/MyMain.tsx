@@ -116,7 +116,7 @@ function MyMain() {
             </div>
           </Row>
           {setting ? (
-            <MySetting />
+            <MySetting dataJson={dataJson} />
           ) : (
             <div>
               <Row className="row-form-data-for-search">
