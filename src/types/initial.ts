@@ -1,5 +1,7 @@
 import { IUser } from "./IUser";
-import { IChat } from "./IChat";
+import { ISelectedUser } from "./IUser";
+
 export interface IInitialState {
   userMe: IUser;
+  selectedUser: ISelectedUser;
 }

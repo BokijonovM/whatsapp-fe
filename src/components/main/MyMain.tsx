@@ -22,11 +22,14 @@ import {
   setUserRefreshTokenAction,
 } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import { ISelectedUser } from "../../types/IUser";
+import UsersList from "./UsersList";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
+  const [allUsers, setAllUsers] = useState<ISelectedUser[] | any[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
@@ -63,6 +66,7 @@ function MyMain() {
       console.log(error);
     }
   };
+
   return (
     <div>
       <Row className="main-row">
@@ -95,17 +99,7 @@ function MyMain() {
                 </div>
               </Row>
               <Row className="col-1-row-2-active-users">
-                <div
-                  className="users-btn-div"
-                  onClick={() => setSelected(!selected)}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                  />
-                  <h6 className="text-light mb-0 ml-2"> username surname</h6>
-                  <p className="mb-0 msg-sent-time text-muted ml-auto">09:19</p>
-                </div>
+                <UsersList />
               </Row>
             </div>
           )}
