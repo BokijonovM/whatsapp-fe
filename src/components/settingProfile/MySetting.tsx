@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./style.css";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Form } from "react-bootstrap";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch, useSelector } from "react-redux";
-import { IUser } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 import CheckIcon from "@mui/icons-material/Check";
-import { AUsersArray } from "../../types/IUser";
+import { setUsernameAction } from "../../redux/actions/index";
 
 function MySetting({ dataJson }: any) {
   const username = useSelector(
@@ -18,7 +17,7 @@ function MySetting({ dataJson }: any) {
   );
   const [isChangeName, setIsChangeName] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(`${username}`);
-
+  const dispatch = useDispatch();
   const handleChangeName = async () => {
     const newUserName = {
       username: newName as string,
@@ -35,7 +34,8 @@ function MySetting({ dataJson }: any) {
       if (res.ok) {
         console.log("done");
         setIsChangeName(false);
-        window.location.href = "/main";
+        // window.location.href = "/main";
+        dispatch(setUsernameAction(newName));
       } else {
         console.log("edit error");
       }
