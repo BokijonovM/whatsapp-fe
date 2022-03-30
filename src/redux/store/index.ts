@@ -10,7 +10,7 @@ import { SingleUserReducer } from "../reducers/SelectedUser";
 const aComposeFunctionThatAlwaysWorks =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const initialState: IInitialState = {
+export const initialState: IInitialState | any = {
   userMe: {
     username: "",
     email: "",
@@ -18,6 +18,7 @@ export const initialState: IInitialState = {
     refreshToken: "",
   },
   selectedUser: null,
+  //chats: []
 };
 
 const bigReducer = combineReducers({
