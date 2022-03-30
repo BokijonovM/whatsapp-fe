@@ -28,7 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ISelectedUser } from "../../types/IUser";
 import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
-
+import io from "socket.io-client"
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
@@ -42,10 +42,16 @@ function MyMain() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selectedUser
-  );
-  useEffect(() => {
+    );
+
+    //socket io
+    const ADDRESS:string = "http://localhost:3001"
+    const socket = io(ADDRESS, { transports: ['websocket']})
+
+    useEffect(() => {
     if (dataJson) {
       setIsLoggedIn(true);
       console.log(dataJson);
@@ -53,6 +59,12 @@ function MyMain() {
       fetchChats(dataJson);
       
       dispatch(setInitSocketAction(dataJson))
+
+      // socket.on("connection",()=>{})
+      //socket.on("sendMsg", )
+      // socket.emit("loggedIn", socket  )
+      // socket.on("incoming-msg",() =>{})
+      // socket.on("disconnect", ()=>{})
     }
   }, []);
 

@@ -4,23 +4,38 @@ import {
   SET_USER_EMAIL,
   SET_USER_REFRESH_TOKEN,
   INIT_SOCKET,
+  LOGGED_IN,
+  INCOMING_MSG,
+  DISCONNECT_SOCKET
+  
 } from "../actions";
 import { initialState } from "../store";
 import io from "socket.io-client"
+import socketSetup from "./socketSetup";
+
+// const socket = useSelector(s => s.socket)
+// const handleClick = () => { socket.emit("testEvent")}
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
      case INIT_SOCKET :
         const ADDRESS:string = "http://localhost:3001"
         const socket = io(ADDRESS, { transports: ['websocket'], auth:{token: action.payload} })
-    //     // initialize your socket listeners.....
-        
-    //     // socket.on("connection",()=>{})
-    socket.emit("loggedIn", socket  )
-    //     socket.on("incoming-msg",() =>{})
-    //     socket.on("disconnect", ()=>{})
+    //     // initialize your socket listeners..... 
+        socketSetup(socket)
         return { ...state, socket}
+    case "EMIT_TEST":
+        state.socket?.emit("testEvent", { message: "Hello world" })
+        return state
     
+
+      //case NEW_MESSAGE
+      // update the correct chat with the new message
+      // look for the chat which has chatId as _id
+
+      //state.socket.emit
+
+
     case SET_USER_NAME:
       return {
         ...state,
