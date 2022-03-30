@@ -24,7 +24,6 @@ import {
 } from "../../redux/actions/index";
 import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { ISelectedUser } from "../../types/IUser";
 import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 
@@ -133,28 +132,40 @@ function MyMain() {
                 <div className="row__posters-1">
                   {isLoading
                     ? ""
-                    : allUsers!.map((user, i) => {
-                        return (
-                          <div
-                            key={i}
-                            className="users-btn-div py-3"
-                            onClick={() => {
-                              dispatch(selectUserAction(user));
-                              setSelected(true);
-                            }}
-                          >
-                            <Avatar alt="Remy Sharp" src={user.avatar} />
-                            <h6 className="text-light mb-0 ml-2">
-                              {" "}
-                              {user.username}
-                            </h6>
-                            <p className="mb-0 msg-sent-time text-muted ml-auto">
-                              {Moment(user.updatedAt).format("HH:mm")}
-                              {/* {user.updatedAt} */}
-                            </p>
-                          </div>
-                        );
-                      })}
+                    : allUsers!
+                        .filter((value) => {
+                          if (searchName === "") {
+                            return value;
+                          } else if (
+                            value.username
+                              .toLowerCase()
+                              .includes(searchName.toLowerCase())
+                          ) {
+                            return value;
+                          }
+                        })
+                        .map((user, i) => {
+                          return (
+                            <div
+                              key={i}
+                              className="users-btn-div py-3"
+                              onClick={() => {
+                                dispatch(selectUserAction(user));
+                                setSelected(true);
+                              }}
+                            >
+                              <Avatar alt="Remy Sharp" src={user.avatar} />
+                              <h6 className="text-light mb-0 ml-2">
+                                {" "}
+                                {user.username}
+                              </h6>
+                              <p className="mb-0 msg-sent-time text-muted ml-auto">
+                                {Moment(user.updatedAt).format("HH:mm")}
+                                {/* {user.updatedAt} */}
+                              </p>
+                            </div>
+                          );
+                        })}
                 </div>
               </Row>
             </div>
