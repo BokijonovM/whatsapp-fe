@@ -7,11 +7,10 @@ import {
   LOGGED_IN,
   INCOMING_MSG,
   DISCONNECT_SOCKET,
-  SEND_MESSAGE
-  
+  SEND_MESSAGE,
 } from "../actions";
-import { initialState } from "../store";
-import io from "socket.io-client"
+import { initialState } from "../store/index";
+import io from "socket.io-client";
 import socketSetup from "./socketSetup";
 import { INewChat } from "../../types/IMsg";
 import { IChat } from "../../types/IChat";
@@ -21,26 +20,29 @@ import { IChat } from "../../types/IChat";
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
-     case INIT_SOCKET :
-        const ADDRESS:string = "http://localhost:3001"
-        const socket = io(ADDRESS, { transports: ['websocket'], auth:{token: action.payload} })
-    //     // initialize your socket listeners..... 
-        socketSetup(socket)
-        return { ...state, socket}
+    case INIT_SOCKET:
+      const ADDRESS: string = "http://localhost:3001";
+      const socket = io(ADDRESS, {
+        transports: ["websocket"],
+        auth: { token: action.payload },
+      });
+      //     // initialize your socket listeners.....
+      socketSetup(socket);
+      return { ...state, socket };
     case "EMIT_TEST":
-        state.socket?.emit("testEvent", { message: "Hello world" })
-        return state
-    
+      state.socket?.emit("testEvent", { message: "Hello world" });
+      return state;
 
-      case SEND_MESSAGE:
+    case SEND_MESSAGE:
       // update the correct chat with the new message
       // look for the chat which has chatId as _id
-      state.socket?.emit("outgoing-msg",(action.payload))
-        return {
-          ...state,
-          chats : state.chats.filter((chat:IChat) => chat._id === action.payload.chatId).message.concat(action.payload.message)
-        }
-
+      state.socket?.emit("outgoing-msg", action.payload);
+      return {
+        ...state,
+        chats: state.chats
+          .filter((chat: IChat) => chat._id === action.payload.chatId)
+          .message.concat(action.payload.message),
+      };
 
     case SET_USER_NAME:
       return {

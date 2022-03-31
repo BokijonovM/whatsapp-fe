@@ -14,33 +14,46 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
 
-
-export const Registerpage = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    
-    await fetch('https://whatsapp-clone-epicode.herokuapp.com//users/account', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        password,
-      }),
-    })
-
- 
-  }
-
 const theme = createTheme();
 
+export const Registerpage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+  const fetchregister = async () => {
+    const registeredUser = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+    };
+    try {
+      let response = await fetch(
+        `${process.env.REACT_APP_PROD_API_URL}/users/account`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(registeredUser),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("MyAToken", data.accessToken);
+        localStorage.setItem("MyRToken", data.accessToken);
+        window.location.href = "/";
+        console.log("registered!");
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,54 +76,52 @@ const theme = createTheme();
           <Box
             component="form"
             noValidate
-            onSubmit={submitHandler }
+            onSubmit={submitHandler}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12}>
                 <TextField
-                required
+                  required
                   autoComplete="given-name"
                   name="firstName"
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  onChange ={(e)=>setFirstName(e.target.value)}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
-                required
+                  required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  onChange={(e)=>setLastName(e.target.value)}
-
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                required
+                  required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e)=>setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                required
+                  required
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  onChange ={(e)=>setPassword(e.target.value)}
-
+                  onChange={(e) => setPassword(e.target.value)}
                   autoComplete="new-password"
                 />
               </Grid>
@@ -126,6 +137,7 @@ const theme = createTheme();
             <Button
               type="submit"
               fullWidth
+              onClick={() => fetchregister()}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -133,14 +145,12 @@ const theme = createTheme();
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/Login">Already have an account? Log in</Link>
+                <Link to="/">Already have an account? Log in</Link>
               </Grid>
             </Grid>
           </Box>
-          </Box>
-       
-       
+        </Box>
       </Container>
     </ThemeProvider>
   );
-}
+};

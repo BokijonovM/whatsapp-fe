@@ -1,5 +1,5 @@
 import { SELECT_USER } from "../actions";
-import { initialState } from "../store";
+import { initialState } from "../store/index";
 
 export const SingleUserReducer = (
   state = initialState.selectedUser,
