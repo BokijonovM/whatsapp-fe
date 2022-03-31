@@ -34,6 +34,7 @@ function MySetting({ dataJson }: any) {
       if (res.ok) {
         console.log("done");
         setIsChangeName(false);
+        window.location.reload();
         // window.location.href = "/main";
         dispatch(setUsernameAction(newName));
       } else {

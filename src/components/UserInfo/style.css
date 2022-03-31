@@ -47,11 +47,15 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+.media-link-docs:hover {
+  background-color: rgb(32, 47, 56);
+  cursor: pointer;
+}
 .row-2-user-info {
   flex-wrap: nowrap;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 90vh;
+  height: 91vh;
 }
 .row-2-user-info::-webkit-scrollbar {
   width: 6px;
@@ -71,4 +75,15 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+.delete-chat-btn {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.delete-chat-btn:hover {
+  background-color: rgb(32, 47, 56);
+  cursor: pointer;
 }

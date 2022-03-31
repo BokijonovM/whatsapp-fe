@@ -92,12 +92,16 @@ function OtherUserInfo() {
           </p>
         </div>
         <div className="className-black-space-needed"></div>
-        <div className="media-link-docs w-100 py-3">
+        <div className="delete-chat-btn w-100 py-3">
           <p className="mb-0 text-danger">
             <DeleteIcon className="mx-3" fontSize="small" />
             Delete chat
           </p>
         </div>
+        <div className="className-black-space-needed"></div>
+        <div className="className-black-space-needed"></div>
+        <div className="className-black-space-needed"></div>
+        <div className="className-black-space-needed"></div>
       </Row>
     </div>
   );
