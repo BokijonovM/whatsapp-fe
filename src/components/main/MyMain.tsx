@@ -13,7 +13,7 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import MicIcon from "@mui/icons-material/Mic";
 import LockIcon from "@mui/icons-material/Lock";
 import MySearch from "./MySearch";
-import { IUser } from "../../types/IUser";
+import { AChatsArray, IUser } from "../../types/IUser";
 import { useNavigate } from "react-router-dom";
 import {
   setUsernameAction,
@@ -29,11 +29,13 @@ import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 import OtherUserInfo from "../UserInfo/OtherUserInfo";
 
+import io from "socket.io-client"
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
   const [allUsers, setAllUsers] = useState<AUsersArray>([]);
+  const [allChats, setAllChats] = useState<AChatsArray>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -43,6 +45,7 @@ function MyMain() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selectedUser
   );
@@ -50,16 +53,25 @@ function MyMain() {
     (state) => (state as IInitialState).userMe.username
   );
   useEffect(() => {
+    
+
+    //socket io
+    const ADDRESS:string = "http://localhost:3001"
+    const socket = io(ADDRESS, { transports: ['websocket']})
+
+    useEffect(() => {
     if (dataJson) {
       setIsLoggedIn(true);
       console.log(dataJson);
       fetchMe(dataJson);
+      fetchUsers(dataJson);
       fetchChats(dataJson);
 
       dispatch(setInitSocketAction(dataJson));
     }
   }, []);
 
+  
   const fetchMe = async (token: string) => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users/me`, {
@@ -83,8 +95,9 @@ function MyMain() {
       console.log(error);
     }
   };
-
-  const fetchChats = async (token: string) => {
+  
+  
+  const fetchUsers = async (token: string) => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users`, {
         method: "GET",
@@ -104,6 +117,29 @@ function MyMain() {
       console.log(error);
     }
   };
+  
+
+  const fetchChats = async (token: string) => {
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        setAllChats(data);
+        console.log(data);
+        setIsLoading(false);
+      } else {
+        console.log("fetch users failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {otherUserInfo ? <OtherUserInfo /> : ""}

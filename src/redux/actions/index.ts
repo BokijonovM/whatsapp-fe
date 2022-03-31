@@ -1,8 +1,9 @@
+import { INewChat } from "../../types/IMsg";
+
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_AVATAR = "SET_USER_AVATAR";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_REFRESH_TOKEN = "SET_USER_REFRESH_TOKEN";
-export const INIT_SOCKET = "INIT_SOCKET";
 
 export const ACTIONS = {
   SET_ACTIVE_CHAT: "SET_ACTIVE_CHAT",
@@ -10,6 +11,11 @@ export const ACTIONS = {
   NEW_MESSAGE: "NEW_MESSAGE",
   NEW_CHAT: "NEW_CHAT",
 };
+export const INIT_SOCKET = "INIT_SOCKET";
+export const LOGGED_IN = "LOGGED_IN";
+export const INCOMING_MSG = "INCOMING_MSG";
+export const DISCONNECT_SOCKET = "DISCONNECT_SOCKET";
+export const SEND_MESSAGE = "SEND_MESSAGE";
 
 // selected user
 export const SELECT_USER = "SELECT_USER";
@@ -40,4 +46,9 @@ export const selectUserAction = (user: any) => ({
 export const setInitSocketAction = (accessToken: string) => ({
   type: INIT_SOCKET,
   payload: accessToken,
+});
+
+export const sendMessageAction = (sendMessage: INewChat) => ({
+  type: SEND_MESSAGE,
+  payload: sendMessage,
 });
