@@ -13,7 +13,6 @@ import { initialState } from "../store";
 import io from "socket.io-client";
 import socketSetup from "./socketSetup";
 import { IChat } from "../../types/IChat";
-
 // const socket = useSelector(s => s.socket)
 // const handleClick = () => { socket.emit("testEvent")}
 
@@ -25,6 +24,7 @@ const userReducer = (state = initialState.userMe, action: any) => {
         transports: ["websocket"],
         auth: { token: action.payload },
       });
+
       //     // initialize your socket listeners.....
       socketSetup(socket);
       return { ...state, socket };

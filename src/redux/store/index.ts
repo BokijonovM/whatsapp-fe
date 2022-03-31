@@ -19,10 +19,11 @@ export const initialState: IInitialState | any = {
     socket: "",
   },
   selectedUser: null,
-  chat: {
-    selected: null,
-    chatList: [],
-  },
+  // socket: null,
+  // chat: {
+  //   selected: null,
+  //   chatList: [],
+  // },
   //chats: []
 };
 

@@ -1,9 +1,11 @@
+import { userObjectTest } from "./IUser";
+
 export interface IChat {
-  _id?:string
-  members: [Object];
+  _id?: string;
+  members: userObjectTest[];
   messages: [
     {
-      sender: Object;
+      sender: userObjectTest;
       content: {
         text: string;
         media: string;
@@ -11,3 +13,4 @@ export interface IChat {
     }
   ];
 }
+export type IChatArray = IChat[];
