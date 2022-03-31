@@ -6,7 +6,7 @@ import { IInitialState } from "../../types/initial";
 import Moment from "moment";
 import Avatar from "@mui/material/Avatar";
 
-function MyContacts() {
+function MyContactsUsers() {
   const [allChats, setAllChats] = useState<IChatArray>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selected, setSelected] = useState(false);
@@ -71,4 +71,4 @@ function MyContacts() {
   );
 }
 
-export default MyContacts;
+export default MyContactsUsers;

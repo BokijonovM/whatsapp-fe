@@ -28,7 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 import OtherUserInfo from "../UserInfo/OtherUserInfo";
-import MyContacts from "./MyContacts";
+import MyContactsUsers from "./MyContactsUsers";
 import { IChatArray } from "../../types/IChat";
 
 function MyMain() {
@@ -252,7 +252,7 @@ function MyMain() {
                           })}
                   </div>
                 ) : (
-                  <MyContacts />
+                  <MyContactsUsers />
                 )}
               </Row>
             </div>
