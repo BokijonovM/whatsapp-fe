@@ -18,18 +18,21 @@ export const initialState: IInitialState | any = {
     refreshToken: "",
     socket: "",
   },
-  selectedUser: null,
-  // socket: null,
-  // chat: {
-  //   selected: null,
-  //   chatList: [],
-  // },
-  chats: [],
+  selection:{
+
+    selectedUser: null,
+    activeChats: [],
+    // socket: null,
+    // chat: {
+      //   selected: null,
+      //   chatList: [],
+      // },
+    }
 };
 
 const bigReducer = combineReducers({
   userMe: userReducer,
-  selectedUser: SingleUserReducer,
+  selection: SingleUserReducer,
 });
 
 const configureStore = createStore(

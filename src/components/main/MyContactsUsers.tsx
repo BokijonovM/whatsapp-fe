@@ -14,7 +14,7 @@ function MyContactsUsers() {
   const dataJson = JSON.parse(JSON.stringify(myToken));
   const dispatch = useDispatch();
   const selectedUser = useSelector(
-    (state) => (state as IInitialState).selectedUser
+    (state) => (state as IInitialState).selection.selectedUser
   );
   const fetchOnline = async () => {
     try {

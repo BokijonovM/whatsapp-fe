@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function OtherUserInfo() {
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const selectedUser = useSelector(
-    (state) => (state as IInitialState).selectedUser
+    (state) => (state as IInitialState).selection.selectedUser
   );
   return (
     <div className="other-user-info-main-div">

@@ -1,15 +1,15 @@
 import { SELECT_USER } from "../actions";
-import { initialState } from "../store";
+import { initialState } from "../store/index";
 
 export const SingleUserReducer = (
-  state = initialState.selectedUser,
+  state = initialState.selection,
   action: any
 ) => {
   switch (action.type) {
     case SELECT_USER: {
       return {
         ...state,
-        user: action.payload,
+        selectedUser:{...state.selection, user:action.payload}
       };
     }
 

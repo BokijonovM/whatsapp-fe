@@ -51,7 +51,7 @@ function MyMain() {
   const [allChats, setAllChats] = useState<IChatArray>([]);
 
   const selectedUser = useSelector(
-    (state) => (state as IInitialState).selectedUser
+    (state) => (state as IInitialState).selection.selectedUser
   );
   const username = useSelector(
     (state) => (state as IInitialState).userMe.username
