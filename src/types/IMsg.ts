@@ -6,3 +6,8 @@ export interface IMsg {
     media: string;
   };
 }
+
+export interface INewChat {
+  chatId:string,
+  message :string
+}

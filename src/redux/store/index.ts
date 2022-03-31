@@ -19,7 +19,14 @@ export const initialState: IInitialState | any = {
     socket : ""
   },
   selectedUser: null,
-  //chats: []
+  chats: [
+    {
+      _id: "chat_yonatan_and_rajib",
+      members: [ "RAJIB_ID", "YONATAN_ID" ],
+      messages: []
+    }
+    
+  ]
 };
 
 const bigReducer = combineReducers({
