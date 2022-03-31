@@ -44,6 +44,9 @@ function MyMain() {
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selectedUser
   );
+  const username = useSelector(
+    (state) => (state as IInitialState).userMe.username
+  );
   useEffect(() => {
     if (dataJson) {
       setIsLoggedIn(true);
@@ -150,27 +153,33 @@ function MyMain() {
                         .map((user, i) => {
                           return (
                             <div
-                              key={i}
                               className={
-                                selectedUser?.user._id == user._id
-                                  ? "users-btn-divSel py-3"
-                                  : "users-btn-div py-3"
+                                username == user.username ? "d-none" : ""
                               }
-                              // className="users-btn-div py-3"
-                              onClick={() => {
-                                dispatch(selectUserAction(user));
-                                setSelected(true);
-                              }}
                             >
-                              <Avatar alt="Remy Sharp" src={user.avatar} />
-                              <h6 className="text-light mb-0 ml-2">
-                                {" "}
-                                {user.username}
-                              </h6>
-                              <p className="mb-0 msg-sent-time text-muted ml-auto">
-                                {Moment(user.updatedAt).format("HH:mm")}
-                                {/* {user.updatedAt} */}
-                              </p>
+                              <div
+                                key={i}
+                                className={
+                                  selectedUser?.user._id == user._id
+                                    ? "users-btn-divSel py-3"
+                                    : "users-btn-div py-3"
+                                }
+                                // className="users-btn-div py-3"
+                                onClick={() => {
+                                  dispatch(selectUserAction(user));
+                                  setSelected(true);
+                                }}
+                              >
+                                <Avatar alt="Remy Sharp" src={user.avatar} />
+                                <h6 className="text-light mb-0 ml-2">
+                                  {" "}
+                                  {user.username}
+                                </h6>
+                                <p className="mb-0 msg-sent-time text-muted ml-auto">
+                                  {Moment(user.updatedAt).format("HH:mm")}
+                                  {/* {user.updatedAt} */}
+                                </p>
+                              </div>
                             </div>
                           );
                         })}
