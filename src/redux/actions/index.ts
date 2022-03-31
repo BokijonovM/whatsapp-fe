@@ -1,3 +1,4 @@
+import { IChat } from "../../types/IChat";
 import { INewChat } from "../../types/IMsg";
 
 export const SET_USER_NAME = "SET_USER_NAME";
@@ -51,4 +52,9 @@ export const setInitSocketAction = (accessToken: string) => ({
 export const sendMessageAction = (sendMessage: INewChat) => ({
   type: SEND_MESSAGE,
   payload: sendMessage,
+});
+
+export const setActiveChatAction = (selectedChat: IChat) => ({
+  type: ACTIONS.SET_ACTIVE_CHAT,
+  payload: selectedChat,
 });

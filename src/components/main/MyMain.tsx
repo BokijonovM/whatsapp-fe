@@ -56,6 +56,12 @@ function MyMain() {
   const username = useSelector(
     (state) => (state as IInitialState).userMe.username
   );
+
+  const activeChat = useSelector(
+    (state) => (state as IInitialState).selection.activeChat
+  );
+
+  
   // useEffect(() => {
   //   );
 
@@ -291,8 +297,10 @@ function MyMain() {
                   chat, not even WhatsApp, can read or listen to them. Click to
                   lear more.
                 </p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
+                {activeChat.messages.map(msg =>   <>
+                <p className={`${username} !== ${msg.sender}"other-messages-text mb-0" "my-messages-text mb-0"`}>my dfghj message</p>
+                <p className="" >other msg</p>
+                </>)}
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">

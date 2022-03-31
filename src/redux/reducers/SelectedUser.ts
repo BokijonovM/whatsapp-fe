@@ -1,4 +1,4 @@
-import { SELECT_USER } from "../actions";
+import { ACTIONS, SELECT_USER } from "../actions";
 import { initialState } from "../store/index";
 
 export const SingleUserReducer = (
@@ -11,6 +11,12 @@ export const SingleUserReducer = (
         ...state,
         selectedUser:{...state.selection, user:action.payload}
       };
+    }
+
+    case ACTIONS.SET_ACTIVE_CHAT: 
+    return {
+      ...state,
+      activeChat : action.payload
     }
 
     default:
