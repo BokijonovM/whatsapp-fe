@@ -29,14 +29,13 @@ import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 import OtherUserInfo from "../UserInfo/OtherUserInfo";
 import MyContacts from "./MyContacts";
+import { IChatArray } from "../../types/IChat";
 
-import io from "socket.io-client";
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
   const [allUsers, setAllUsers] = useState<AUsersArray>([]);
-  const [allChats, setAllChats] = useState<AChatsArray>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -49,6 +48,7 @@ function MyMain() {
 
   // chats
   const [message, setMessage] = useState<string>("");
+  const [allChats, setAllChats] = useState<IChatArray>([]);
 
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selectedUser
@@ -69,6 +69,7 @@ function MyMain() {
       console.log(dataJson);
       fetchMe(dataJson);
       fetchUsers(dataJson);
+      fetchMsg();
       // fetchChats(dataJson);
 
       dispatch(setInitSocketAction(dataJson));
@@ -136,6 +137,26 @@ function MyMain() {
         setIsLoading(false);
       } else {
         console.log("fetch users failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchMsg = async () => {
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
+        method: "GET",
+        headers: {
+          authorization: dataJson,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        console.log("all msg", data.messages);
+        setAllChats(data.messages);
+      } else {
+        console.log("fetch msg error");
       }
     } catch (error) {
       console.log(error);
@@ -279,6 +300,7 @@ function MyMain() {
               <AttachmentIcon className="text-light" />
               <Form.Group controlId="formBasicText">
                 <Form.Control
+                  onChange={(e) => setMessage(e.target.value)}
                   className="form-for-msg  shadow-none"
                   type="text"
                   placeholder="Type a message"

@@ -24,7 +24,7 @@ export const initialState: IInitialState | any = {
   //   selected: null,
   //   chatList: [],
   // },
-  //chats: []
+  chats: [],
 };
 
 const bigReducer = combineReducers({
