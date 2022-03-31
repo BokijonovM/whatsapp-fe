@@ -17,9 +17,9 @@ import { Link } from "react-router-dom";
 const theme = createTheme();
 
 export const Registerpage = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,9 +27,9 @@ export const Registerpage = () => {
   };
   const fetchregister = async () => {
     const registeredUser = {
-      first_name: firstName,
-      last_name: lastName,
+      username: userName,
       email: email,
+      avatar: avatar,
       password: password,
     };
     try {
@@ -84,22 +84,21 @@ export const Registerpage = () => {
                 <TextField
                   required
                   autoComplete="given-name"
-                  name="firstName"
+                  name="userName"
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  onChange={(e) => setFirstName(e.target.value)}
+                  id="userName"
+                  label="User Name"
+                  onChange={(e) => setUserName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
-                  required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="avatar"
+                  label="avatar"
+                  name="avatar"
                   autoComplete="family-name"
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={(e) => setAvatar(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
