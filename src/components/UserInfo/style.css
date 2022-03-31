@@ -1,0 +1,74 @@
+.other-user-info-main-div {
+  height: 100vh;
+  width: 35vw;
+  position: fixed;
+  right: 0;
+  background-color: rgb(17, 27, 33);
+  color: white !important;
+  border-left: 0.1px solid grey;
+  z-index: 999;
+  padding: 0;
+  margin: 0%;
+}
+.user-info-header-row {
+  height: 60px;
+  width: 100%;
+  margin: 0;
+  padding: 0%;
+  background-color: rgb(32, 44, 51);
+  justify-content: flex-start;
+  padding-left: 20px;
+  align-items: center;
+  align-content: center;
+}
+.selected-user-info-main-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.className-black-space-needed {
+  border-bottom: 10px solid rgb(11, 20, 26);
+  width: 35vw;
+  margin: 0%;
+  padding: 0%;
+  margin-right: -20px;
+}
+.selected-user-about-part {
+  text-align: start;
+  padding-left: 20px;
+}
+.selected-user-about-part p {
+  font-size: 12px;
+}
+.media-link-docs {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.row-2-user-info {
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 90vh;
+}
+.row-2-user-info::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  background: #121212;
+  background: transparent !important;
+  z-index: 0 !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

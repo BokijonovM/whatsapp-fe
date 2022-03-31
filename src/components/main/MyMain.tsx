@@ -27,6 +27,7 @@ import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
+import OtherUserInfo from "../UserInfo/OtherUserInfo";
 
 function MyMain() {
   const [selected, setSelected] = useState(false);
@@ -36,6 +37,7 @@ function MyMain() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [otherUserInfo, setOtherUserInfo] = useState<boolean>(false);
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
   const navigate = useNavigate();
@@ -104,6 +106,7 @@ function MyMain() {
   };
   return (
     <div>
+      {otherUserInfo ? <OtherUserInfo /> : ""}
       <Row className="main-row">
         <Col md={4} className="m-0 p-0">
           <Row className="col-1-row-1-1st-header">
@@ -192,7 +195,10 @@ function MyMain() {
         {selected ? (
           <Col md={8} className="m-0 p-0">
             <Row className="col-2-row-1-2nd-header">
-              <div className="d-flex align-items-center">
+              <div
+                className="d-flex align-items-center"
+                onClick={() => setOtherUserInfo(!otherUserInfo)}
+              >
                 <Avatar
                   className="mr-2"
                   alt="Remy Sharp"
@@ -237,7 +243,7 @@ function MyMain() {
                 <p className="my-messages-text mb-0">my message</p>
                 <p className="other-messages-text mb-0">other msg</p>
                 <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other mseeg</p>
+                <p className="other-messages-text mb-0">last msg</p>
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">
