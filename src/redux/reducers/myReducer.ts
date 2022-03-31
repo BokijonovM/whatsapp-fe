@@ -6,12 +6,15 @@ import {
   INIT_SOCKET,
   LOGGED_IN,
   INCOMING_MSG,
-  DISCONNECT_SOCKET
+  DISCONNECT_SOCKET,
+  SEND_MESSAGE
   
 } from "../actions";
 import { initialState } from "../store";
 import io from "socket.io-client"
 import socketSetup from "./socketSetup";
+import { INewChat } from "../../types/IMsg";
+import { IChat } from "../../types/IChat";
 
 // const socket = useSelector(s => s.socket)
 // const handleClick = () => { socket.emit("testEvent")}
@@ -29,11 +32,14 @@ const userReducer = (state = initialState.userMe, action: any) => {
         return state
     
 
-      //case NEW_MESSAGE
+      case SEND_MESSAGE:
       // update the correct chat with the new message
       // look for the chat which has chatId as _id
-
-      //state.socket.emit
+      state.socket?.emit("outgoing-msg",(action.payload))
+        return {
+          ...state,
+          chats : state.chats.filter((chat:IChat) => chat._id === action.payload.chatId).message.concat(action.payload.message)
+        }
 
 
     case SET_USER_NAME:
