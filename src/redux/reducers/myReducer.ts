@@ -4,10 +4,18 @@ import {
   SET_USER_EMAIL,
   SET_USER_REFRESH_TOKEN,
   INIT_SOCKET,
+  LOGGED_IN,
+  INCOMING_MSG,
+  DISCONNECT_SOCKET,
+  SEND_MESSAGE,
 } from "../actions";
 import { initialState } from "../store";
 import io from "socket.io-client";
-import { ACTIONS } from "../actions/index";
+import socketSetup from "./socketSetup";
+import { IChat } from "../../types/IChat";
+
+// const socket = useSelector(s => s.socket)
+// const handleClick = () => { socket.emit("testEvent")}
 
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
@@ -18,12 +26,22 @@ const userReducer = (state = initialState.userMe, action: any) => {
         auth: { token: action.payload },
       });
       //     // initialize your socket listeners.....
-
-      //     // socket.on("connection",()=>{})
-      socket.emit("loggedIn", socket);
-      //     socket.on("incoming-msg",() =>{})
-      //     socket.on("disconnect", ()=>{})
+      socketSetup(socket);
       return { ...state, socket };
+    case "EMIT_TEST":
+      state.socket?.emit("testEvent", { message: "Hello world" });
+      return state;
+
+    case SEND_MESSAGE:
+      // update the correct chat with the new message
+      // look for the chat which has chatId as _id
+      state.socket?.emit("outgoing-msg", action.payload);
+      return {
+        ...state,
+        chats: state.chats
+          .filter((chat: IChat) => chat._id === action.payload.chatId)
+          .message.concat(action.payload.message),
+      };
 
     case SET_USER_NAME:
       return {
@@ -44,18 +62,6 @@ const userReducer = (state = initialState.userMe, action: any) => {
       return {
         ...state,
         refreshToken: action.payload,
-      };
-    case ACTIONS.SET_ACTIVE_CHAT:
-      return {
-        chatList: action.payload,
-      };
-    case ACTIONS.SET_HISTORY:
-      return {
-        selected: action.payload,
-      };
-    case ACTIONS.NEW_MESSAGE:
-      return {
-        selected: action.payload,
       };
     default:
       return state;
