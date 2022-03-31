@@ -22,6 +22,7 @@ import {
   setUserRefreshTokenAction,
   selectUserAction,
   setInitSocketAction,
+  sendMessageAction,
 } from "../../redux/actions/index";
 import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -169,6 +170,20 @@ function MyMain() {
     }
   };
 
+  const handleMessage = (e:any) => {
+    e.preventDefault()
+    console.log(e)
+  }
+  const sendMessage = () => {
+    try {
+      dispatch(sendMessageAction({chatId:"6242d976f184d2d4d54f374e", message:{sender:"6242d7d12224c366cf2c120a",content:message}}))
+      console.log("message send")
+      setMessage("")
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       {otherUserInfo ? <OtherUserInfo /> : ""}
@@ -306,10 +321,11 @@ function MyMain() {
             <Row className="col-2-row-3-type-msg">
               <InsertEmoticonIcon className="text-light" />
               <AttachmentIcon className="text-light" />
-              <Form.Group controlId="formBasicText">
+              <Form.Group onSubmit={() => sendMessage()} controlId="formBasicText">
                 <Form.Control
                   onChange={(e) => setMessage(e.target.value)}
-                  className="form-for-msg  shadow-none"
+                  onKeyDown={(e) => {e.key ==="Enter" && sendMessage()}}
+                  className="form-for-msg  shadow-none text-white"
                   type="text"
                   placeholder="Type a message"
                 />

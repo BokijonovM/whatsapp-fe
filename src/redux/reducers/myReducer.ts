@@ -36,12 +36,13 @@ const userReducer = (state = initialState.userMe, action: any) => {
       // update the correct chat with the new message
       // look for the chat which has chatId as _id
       state.socket?.emit("outgoing-msg", action.payload);
-      return {
-        ...state,
-        chats: state.chats
-          .filter((chat: IChat) => chat._id === action.payload.chatId)
-          .message.concat(action.payload.message),
-      };
+      // return {
+      //   ...state,
+      //   chats: state.chats
+      //     .filter((chat: IChat) => chat._id === action.payload.chatId)
+      //     .message.concat(action.payload.message),
+      // };
+      return state
 
     case SET_USER_NAME:
       return {
