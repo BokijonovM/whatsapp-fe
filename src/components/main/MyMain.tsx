@@ -238,7 +238,7 @@ function MyMain() {
           )}
         </Col>
 
-        {selected ? (
+        {selectedUser ? (
           <Col md={8} className="m-0 p-0">
             <Row className="col-2-row-1-2nd-header">
               <div

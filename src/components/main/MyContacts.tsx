@@ -52,7 +52,7 @@ function MyContacts() {
                 }
                 // className="users-btn-div py-3"
                 onClick={() => {
-                  dispatch(selectUserAction(user));
+                  dispatch(selectUserAction(user.members[1]));
                   setSelected(true);
                 }}
               >
