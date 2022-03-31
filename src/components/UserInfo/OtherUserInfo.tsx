@@ -43,7 +43,7 @@ function OtherUserInfo() {
           <p className="mb-0">Media, links and docs</p>
 
           <span className="ml-auto">
-            0 <ArrowForwardIosIcon />
+            0 <ArrowForwardIosIcon fontSize="small" />
           </span>
         </div>
         <div className="className-black-space-needed"></div>
@@ -54,7 +54,7 @@ function OtherUserInfo() {
           </p>
 
           <span className="ml-auto">
-            <ArrowForwardIosIcon />
+            <ArrowForwardIosIcon fontSize="small" />
           </span>
         </div>
         <div className="className-black-space-needed"></div>
@@ -75,7 +75,7 @@ function OtherUserInfo() {
           </p>
 
           <span className="ml-auto">
-            <ArrowForwardIosIcon />
+            <ArrowForwardIosIcon fontSize="small" />
           </span>
         </div>
         <div className="className-black-space-needed"></div>
