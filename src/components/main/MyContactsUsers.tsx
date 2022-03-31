@@ -10,16 +10,15 @@ function MyContactsUsers() {
   const [allChats, setAllChats] = useState<IChatArray>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selected, setSelected] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState();
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
   const dispatch = useDispatch();
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selection.selectedUser
   );
-  const activeChat = useSelector(
-    (state) => (state as IInitialState).selection.activeChat
-  );
-  const fetchOnline = async () => {
+  
+  const fetchChatHistory = async () => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
         method: "GET",
@@ -37,8 +36,28 @@ function MyContactsUsers() {
       console.log(error);
     }
   };
+
+  const fetchOnline = async() =>{
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/online-users`, {
+        method: "GET",
+        headers: {
+          authorization: dataJson,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        console.log("all fetchOnline users", data);
+        setOnlineUsers(data.messages);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     fetchOnline();
+    fetchChatHistory();
   }, []);
   return (
     <div>

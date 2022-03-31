@@ -22,6 +22,7 @@ export const initialState: IInitialState | any = {
 
     selectedUser: null,
     activeChats: [],
+    socketChats:[]
     // socket: null,
     // chat: {
       //   selected: null,

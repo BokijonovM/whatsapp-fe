@@ -1,4 +1,6 @@
 export interface IUser {
+  _id: string;
+
   username: string;
   email: string;
   avatar: string;
@@ -34,6 +36,13 @@ export interface ISelectedUser {
   user: userObject[];
 }
 
+
+export interface IOnlineUsers {
+  userId:string,
+   id:string , 
+   createdAt: Date, 
+   socket: any
+}
 export type AUsersArray = userObject[];
 export type AChatsArray = chatObject[];
 

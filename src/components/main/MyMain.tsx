@@ -170,13 +170,11 @@ function MyMain() {
     }
   };
 
-  const handleMessage = (e:any) => {
-    e.preventDefault()
-    console.log(e)
-  }
+  
   const sendMessage = () => {
+    
     try {
-      dispatch(sendMessageAction({chatId:"6242d976f184d2d4d54f374e", message:{sender:"6242d7d12224c366cf2c120a",content:message}}))
+      dispatch(sendMessageAction({chatId:activeChat._id, message:{sender:myInfo?._id,content:message}}))
       console.log("message send")
       setMessage("")
     } catch (error) {
@@ -240,6 +238,7 @@ function MyMain() {
                           .map((user, i) => {
                             return (
                               <div
+                                key={i}
                                 onClick={() => postChats(user._id)}
                                 className={
                                   username == user.username ? "d-none" : ""
@@ -312,10 +311,10 @@ function MyMain() {
                   chat, not even WhatsApp, can read or listen to them. Click to
                   lear more.
                 </p>
-                {activeChat.messages.map(msg =>   <>
-                <p className={`${username} !== ${msg.sender}"other-messages-text mb-0" "my-messages-text mb-0"`}>my dfghj message</p>
-                <p className="" >other msg</p>
-                </>)}
+                {activeChat.messages.map((msg, i) =>   <div key={i}>
+                <p className="other-messages-text mb-0 text-white">{msg.content?.text}</p>
+                <p className="my-messages-text mb-0 text-white" >other msg</p>
+                </div>)}
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">
@@ -324,7 +323,7 @@ function MyMain() {
               <Form.Group onSubmit={() => sendMessage()} controlId="formBasicText">
                 <Form.Control
                   onChange={(e) => setMessage(e.target.value)}
-                  onKeyDown={(e) => {e.key ==="Enter" && sendMessage()}}
+                  onKeyDown={(e) => {e.key ==="Enter" && message.length>0 && sendMessage()}}
                   className="form-for-msg  shadow-none text-white"
                   type="text"
                   placeholder="Type a message"
