@@ -3,7 +3,7 @@
 import { INewChat } from "../../types/IMsg"
 
 
-export default function socketSetup(socket:any) {
+ export default function socketSetup(socket:any) {
     // const navigate = useNavigate()
     socket.on("connection",()=>{console.log('connection established!')})
     socket.on("JWT_ERROR", () => console.log("JWT_ERROR"))

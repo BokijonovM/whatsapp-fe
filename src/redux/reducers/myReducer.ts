@@ -12,7 +12,6 @@ import {
 import { initialState } from "../store/index";
 import io from "socket.io-client";
 import socketSetup from "./socketSetup";
-import { INewChat } from "../../types/IMsg";
 import { IChat } from "../../types/IChat";
 
 // const socket = useSelector(s => s.socket)
@@ -21,6 +20,7 @@ import { IChat } from "../../types/IChat";
 const userReducer = (state = initialState.userMe, action: any) => {
   switch (action.type) {
     case INIT_SOCKET:
+      console.log("from socket inti",action.payload)
       const ADDRESS: string = "http://localhost:3001";
       const socket = io(ADDRESS, {
         transports: ["websocket"],

@@ -49,7 +49,6 @@ function MyMain() {
 
   //socket io
   const ADDRESS: string = "http://localhost:3001";
-  const socket = io(ADDRESS, { transports: ["websocket"] });
 
   useEffect(() => {
     if (dataJson) {

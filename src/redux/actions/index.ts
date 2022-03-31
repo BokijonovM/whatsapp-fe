@@ -37,13 +37,18 @@ export const selectUserAction = (user: any) => ({
   payload: user,
 });
 
-export const setInitSocketAction = (accessToken:string) => ({
-  type : INIT_SOCKET,
-  payload : accessToken
-})
-
-export const  sendMessageAction = (sendMessage:INewChat) => ({
+export const  endMessageAction = (sendMessage:INewChat) => ({
   type : SEND_MESSAGE,
-  payload : sendMessage
+      payload : sendMessage
 })
 
+export const  setInitSocketAction  = ( accessToken:string) => {
+  return (dispatch:any) => {
+    console.log(accessToken)
+    dispatch({
+      type : INIT_SOCKET,
+  payload : accessToken
+      
+    })
+  }
+}
