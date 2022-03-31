@@ -19,11 +19,12 @@ export const initialState: IInitialState | any = {
     socket: "",
   },
   selectedUser: null,
-  chat: {
-    selected: null,
-    chatList: [],
-  },
-  //chats: []
+  // socket: null,
+  // chat: {
+  //   selected: null,
+  //   chatList: [],
+  // },
+  chats: [],
 };
 
 const bigReducer = combineReducers({

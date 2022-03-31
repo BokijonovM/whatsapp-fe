@@ -28,22 +28,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { AUsersArray } from "../../types/IUser";
 import { IInitialState } from "../../types/initial";
 import OtherUserInfo from "../UserInfo/OtherUserInfo";
+import MyContacts from "./MyContacts";
+import { IChatArray } from "../../types/IChat";
 
-import io from "socket.io-client";
 function MyMain() {
   const [selected, setSelected] = useState(false);
   const [setting, setSetting] = useState(false);
   const [myInfo, setMyInfo] = useState<IUser | null>(null);
   const [allUsers, setAllUsers] = useState<AUsersArray>([]);
-  const [allChats, setAllChats] = useState<AChatsArray>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [otherUserInfo, setOtherUserInfo] = useState<boolean>(false);
+  const [myContacts, setMyContacts] = useState<boolean>(false);
   const myToken = localStorage.getItem("MyAToken");
   const dataJson = JSON.parse(JSON.stringify(myToken));
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // chats
+  const [message, setMessage] = useState<string>("");
+  const [allChats, setAllChats] = useState<IChatArray>([]);
 
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selectedUser
@@ -55,8 +60,8 @@ function MyMain() {
   //   );
 
   //socket io
-  const ADDRESS: string = "http://localhost:3001";
-  const socket = io(ADDRESS, { transports: ["websocket"] });
+  // const ADDRESS: string = "http://localhost:3001";
+  // const socket = io(ADDRESS, { transports: ["websocket"] });
 
   useEffect(() => {
     if (dataJson) {
@@ -64,7 +69,8 @@ function MyMain() {
       console.log(dataJson);
       fetchMe(dataJson);
       fetchUsers(dataJson);
-      fetchChats(dataJson);
+      fetchMsg();
+      // fetchChats(dataJson);
 
       dispatch(setInitSocketAction(dataJson));
     }
@@ -115,21 +121,42 @@ function MyMain() {
     }
   };
 
-  const fetchChats = async (token: string) => {
+  const postChats = async (resId: string) => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
-        method: "GET",
+        method: "POST",
+        body: JSON.stringify({ recipient: resId }),
         headers: {
-          authorization: token,
+          authorization: dataJson,
+          "Content-Type": "application/json",
         },
       });
       if (res.ok) {
         let data = await res.json();
-        setAllChats(data);
-        console.log(data);
+        console.log("chats post", data);
         setIsLoading(false);
       } else {
         console.log("fetch users failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchMsg = async () => {
+    try {
+      let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
+        method: "GET",
+        headers: {
+          authorization: dataJson,
+        },
+      });
+      if (res.ok) {
+        let data = await res.json();
+        console.log("all msg", data.messages);
+        setAllChats(data.messages);
+      } else {
+        console.log("fetch msg error");
       }
     } catch (error) {
       console.log(error);
@@ -149,7 +176,10 @@ function MyMain() {
             />
             <div className="d-flex">
               <RestartAltOutlinedIcon className="header-1-all-icons" />
-              <MessageIcon className="header-1-all-icons" />
+              <MessageIcon
+                className="header-1-all-icons"
+                onClick={() => setMyContacts(!myContacts)}
+              />
               <MoreVertIcon className="header-1-all-icons" />
             </div>
           </Row>
@@ -170,61 +200,66 @@ function MyMain() {
                 </div>
               </Row>
               <Row className="col-1-row-2-active-users ">
-                <div className="row__posters-1">
-                  {isLoading
-                    ? ""
-                    : allUsers!
-                        .filter((value) => {
-                          if (searchName === "") {
-                            return value;
-                          } else if (
-                            value.username
-                              .toLowerCase()
-                              .includes(searchName.toLowerCase())
-                          ) {
-                            return value;
-                          }
-                        })
-                        .map((user, i) => {
-                          return (
-                            <div
-                              className={
-                                username == user.username ? "d-none" : ""
-                              }
-                            >
+                {myContacts ? (
+                  <div className="row__posters-1">
+                    {isLoading
+                      ? ""
+                      : allUsers!
+                          .filter((value) => {
+                            if (searchName === "") {
+                              return value;
+                            } else if (
+                              value.username
+                                .toLowerCase()
+                                .includes(searchName.toLowerCase())
+                            ) {
+                              return value;
+                            }
+                          })
+                          .map((user, i) => {
+                            return (
                               <div
-                                key={i}
+                                onClick={() => postChats(user._id)}
                                 className={
-                                  selectedUser?.user._id == user._id
-                                    ? "users-btn-divSel py-3"
-                                    : "users-btn-div py-3"
+                                  username == user.username ? "d-none" : ""
                                 }
-                                // className="users-btn-div py-3"
-                                onClick={() => {
-                                  dispatch(selectUserAction(user));
-                                  setSelected(true);
-                                }}
                               >
-                                <Avatar alt="Remy Sharp" src={user.avatar} />
-                                <h6 className="text-light mb-0 ml-2">
-                                  {" "}
-                                  {user.username}
-                                </h6>
-                                <p className="mb-0 msg-sent-time text-muted ml-auto">
-                                  {Moment(user.updatedAt).format("HH:mm")}
-                                  {/* {user.updatedAt} */}
-                                </p>
+                                <div
+                                  key={i}
+                                  className={
+                                    selectedUser?.user._id == user._id
+                                      ? "users-btn-divSel py-3"
+                                      : "users-btn-div py-3"
+                                  }
+                                  // className="users-btn-div py-3"
+                                  onClick={() => {
+                                    dispatch(selectUserAction(user));
+                                    setSelected(true);
+                                  }}
+                                >
+                                  <Avatar alt="Remy Sharp" src={user.avatar} />
+                                  <h6 className="text-light mb-0 ml-2">
+                                    {" "}
+                                    {user.username}
+                                  </h6>
+                                  <p className="mb-0 msg-sent-time text-muted ml-auto">
+                                    {Moment(user.updatedAt).format("HH:mm")}
+                                    {/* {user.updatedAt} */}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
-                </div>
+                            );
+                          })}
+                  </div>
+                ) : (
+                  <MyContacts />
+                )}
               </Row>
             </div>
           )}
         </Col>
 
-        {selected ? (
+        {selectedUser ? (
           <Col md={8} className="m-0 p-0">
             <Row className="col-2-row-1-2nd-header">
               <div
@@ -258,24 +293,6 @@ function MyMain() {
                 </p>
                 <p className="my-messages-text mb-0">my message</p>
                 <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">other msg</p>
-                <p className="my-messages-text mb-0">my message</p>
-                <p className="other-messages-text mb-0">last msg</p>
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">
@@ -283,6 +300,7 @@ function MyMain() {
               <AttachmentIcon className="text-light" />
               <Form.Group controlId="formBasicText">
                 <Form.Control
+                  onChange={(e) => setMessage(e.target.value)}
                   className="form-for-msg  shadow-none"
                   type="text"
                   placeholder="Type a message"
