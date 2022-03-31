@@ -12,7 +12,6 @@ import {
 import { initialState } from "../store";
 import io from "socket.io-client";
 import socketSetup from "./socketSetup";
-import { INewChat } from "../../types/IMsg";
 import { IChat } from "../../types/IChat";
 
 // const socket = useSelector(s => s.socket)
@@ -63,18 +62,6 @@ const userReducer = (state = initialState.userMe, action: any) => {
       return {
         ...state,
         refreshToken: action.payload,
-      };
-    case ACTIONS.SET_ACTIVE_CHAT:
-      return {
-        chatList: action.payload,
-      };
-    case ACTIONS.SET_HISTORY:
-      return {
-        selected: action.payload,
-      };
-    case ACTIONS.NEW_MESSAGE:
-      return {
-        selected: action.payload,
       };
     default:
       return state;
