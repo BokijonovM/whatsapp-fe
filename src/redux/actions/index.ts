@@ -50,10 +50,15 @@ export const setInitSocketAction = (accessToken: string) => ({
   payload: accessToken,
 });
 
-export const sendMessageAction = (sendMessage: INewChat) => ({
-  type: SEND_MESSAGE,
-  payload: sendMessage,
-});
+export const sendMessageAction = (sendMessage: INewChat) => {
+  return(dispatch:any) => {
+    console.log("sendMessage from action", sendMessage)
+    dispatch({
+      type: SEND_MESSAGE,
+      payload: sendMessage,
+    })
+  }
+};
 
 export const setActiveChatAction = (selectedChatId: string) => ({
   type: ACTIONS.SET_ACTIVE_CHAT_ID,

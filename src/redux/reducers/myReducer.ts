@@ -43,12 +43,7 @@ const userReducer = (state = initialState.userMe, action: any) => {
       //     .message.concat(action.payload.message),
       // };
       return state
-      
-      case "NEW_CHATS":
-        return{
-          ...state,
-          socketChats:action.payload
-        }
+    
 
     case SET_USER_NAME:
       return {

@@ -15,9 +15,10 @@ export default function socketSetup(socket:any) {
     socket.on("JWT_ERROR", () => console.log("JWT_ERROR"))
     socket.on("incoming-msg",({chatId, message} : IincomingMsg) =>{
       // store.dispatch  NEW_MESSAGE action, the payload will be { chatId, message}
+      console.log("message====", message,   "chatId ====", chatId)
          configureStore.dispatch({
              type:NEW_MESSAGE,
-             payload:{ chatId, message}
+             payload:{ chatId, message,}
          })
     })
     socket.on("disconnect", ()=>{})
