@@ -329,7 +329,7 @@ function MyMain() {
                   .map((item) =>
                     item.messages.map((msg, i: number) => (
                       <div key={i} className="w-100 d-flex flex-column">
-                        <p onClick={() => console.log()} className= {msg?.sender._id === userMe?._id
+                        <p onClick={() => console.log(userMe)} className= {msg?.sender._id === userMe?._id
                               ? "my-messages-text mb-0 text-white"
                               : "other-messages-text mb-0 text-white"
                             }>

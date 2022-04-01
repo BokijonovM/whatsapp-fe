@@ -13,31 +13,91 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
+import { handleBreakpoints } from "@mui/system";
+import { Alert } from "react-bootstrap";
+import { Console } from "console";
 
+interface IRegUser {
+
+    username: string,
+    email: string,
+    avatar: string,
+    password: string,
+}
 
 export const Registerpage = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
 
+  const [errorOnReg, setErrorOnReg] = useState(false)
+  const error:IRegUser = {    
+    username: "",
+    email: "",
+    avatar: "",
+    password: ""} 
+
+  const [regUser, setRegUser] = useState({
+    username: "",
+    email: "",
+    avatar: "",
+    password: "",
     
-    await fetch('https://whatsapp-clone-epicode.herokuapp.com//users/account', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        password,
-      }),
-    })
-
- 
+  })
+  
+  const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
+    setRegUser({...regUser,[e.currentTarget.name]:[e.currentTarget.value]})
+    console.log(regUser)
   }
+  
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+      let errors = validateInfo(regUser)
+      if(Object.keys(errors).length === 0){
+        registerUser()
+      }else{
+        setErrorOnReg(true)
+      }
+  }
+
+  const validateInfo = (user:IRegUser) => {
+      const regex = /\S+@\S+\.\S+/
+     
+      error.email = !user.email? "email is missing" : (!regex.test(user.email))? "Email is not valid":""
+      error.password = !user.password? "password is missing":""
+      error.username = !user.username? "username is missing":""
+      
+      return error
+
+  }
+
+  
+
+  const registerUser = async () => {
+  
+    try {
+      let res = await fetch(
+        `${process.env.REACT_APP_PROD_API_URL}/users/account`,
+        {
+          method: "POST",
+          body: JSON.stringify(regUser),
+          headers: { "Content-type": "application/json" },
+        }
+      );
+      if (res.status !== 200) {
+        alert("error not 200");
+      }
+      if (res.ok) {
+        let data = await res.json();
+        localStorage.setItem("MyAToken", data.accessToken);
+        localStorage.setItem("MyRToken", data.accessToken);
+        window.location.href = "/main";
+        console.log("Successfully logged in!");
+      } else {
+        console.log("fetch login failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const theme = createTheme();
 
@@ -45,6 +105,12 @@ const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+        <Alert variant="danger" style={{display:errorOnReg? "block":"none"}}>
+          Error
+          {error.username}
+          {error.email}
+          {error.password}
+          </Alert>
         <CssBaseline />
         <Box
           sx={{
@@ -70,23 +136,25 @@ const theme = createTheme();
               <Grid item xs={12} sm={12}>
                 <TextField
                 required
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="avatar"
+                  name="avatar"
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  onChange ={(e)=>setFirstName(e.target.value)}
+                  id="avatar"
+                  label="Avatar"
+                  onChange ={(e:any)=>handleChange(e)}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
                 required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="username"
+                  label="Username"
+                  name="username"
                   autoComplete="family-name"
-                  onChange={(e)=>setLastName(e.target.value)}
+                  value={regUser.username}
+
+                  onChange={(e: any)=>handleChange(e)}
 
                 />
               </Grid>
@@ -98,7 +166,9 @@ const theme = createTheme();
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e)=>setEmail(e.target.value)}
+                  value={regUser.email}
+
+                  onChange={(e:any)=>handleChange(e)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,7 +179,8 @@ const theme = createTheme();
                   label="Password"
                   type="password"
                   id="password"
-                  onChange ={(e)=>setPassword(e.target.value)}
+                  value={regUser.password}
+                  onChange ={(e:any)=>handleChange(e)}
 
                   autoComplete="new-password"
                 />
