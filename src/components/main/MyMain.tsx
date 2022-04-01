@@ -181,7 +181,7 @@ function MyMain() {
       dispatch(
         sendMessageAction({
           chatId: activeChatId,
-          message: { sender: myInfo?._id, content: message },
+          message: { sender: userMe?._id, content: message },
         })
       );
       console.log("message send");
@@ -255,7 +255,7 @@ function MyMain() {
                                 <div
                                   key={i}
                                   className={
-                                    selectedUser?.user._id == user._id
+                                    selectedUser?._id == user._id
                                       ? "users-btn-divSel py-3"
                                       : "users-btn-div py-3"
                                   }
@@ -297,10 +297,10 @@ function MyMain() {
                 <Avatar
                   className="mr-2"
                   alt="Remy Sharp"
-                  src={selectedUser?.user.avatar}
+                  src={selectedUser?.avatar}
                 />
                 <h6 className="mb-0 text-light">
-                  {selectedUser?.user.username}
+                  {selectedUser?.username}
                 </h6>
               </div>
               <div className="d-flex">
@@ -311,7 +311,7 @@ function MyMain() {
             <Row className="col-2-row-2-msg-dis-player">
               <div className="row__posters">
                 <p className="mb-0 text-light today-msg-date-text">
-                  {Moment(selectedUser?.user.createdAt).format("DD/MM/YYYY")}
+                  {Moment(selectedUser?.createdAt).format("DD/MM/YYYY")}
                 </p>
                 <p className="mb-0 today-security-info-text mx-5">
                   <LockIcon fontSize="small" />
@@ -323,20 +323,14 @@ function MyMain() {
                   .filter((chat) => chat._id === activeChatId)
                   .map((item) =>
                     item.messages.map((msg, i: number) => (
-                      <div className="w-100 d-flex flex-column">
-                        <p className="my-messages-text mb-0 text-white">
-                          {msg.content?.text}
-                        </p>
-
-                        <p
-                          className={
-                            msg.sender._id === userMe._id
-                              ? "d-none"
+                      <div key={i} className="w-100 d-flex flex-column">
+                        <p onClick={() => console.log()} className= {msg?.sender._id === userMe._id
+                              ? "my-messages-text mb-0 text-white"
                               : "other-messages-text mb-0 text-white"
-                          }
-                        >
+                            }>
                           {msg.content?.text}
                         </p>
+                          
                       </div>
                     ))
                   )}

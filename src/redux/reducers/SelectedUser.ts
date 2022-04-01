@@ -10,7 +10,7 @@ export const SingleUserReducer = (
     case SELECT_USER: {
       return {
         ...state,
-        selectedUser:{...state.selection, user:action.payload}
+        selectedUser:action.payload
       };
     }
 

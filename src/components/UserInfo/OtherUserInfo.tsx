@@ -28,10 +28,10 @@ function OtherUserInfo() {
         <div className="my-4 ">
           <img
             className="selected-user-info-main-image"
-            src={selectedUser?.user.avatar}
-            alt={selectedUser?.user.username}
+            src={selectedUser?.avatar}
+            alt={selectedUser?.username}
           />
-          <h5 className="mb-0 mt-3">{selectedUser?.user.username}</h5>
+          <h5 className="mb-0 mt-3">{selectedUser?.username}</h5>
         </div>
         <div className="className-black-space-needed"></div>
         <div className="selected-user-about-part py-3">
@@ -82,13 +82,13 @@ function OtherUserInfo() {
         <div className="media-link-docs w-100 py-3">
           <p className="mb-0 text-danger">
             <BlockIcon className="mx-3" fontSize="small" />
-            Block {selectedUser?.user.username}
+            Block {selectedUser?.username}
           </p>
         </div>
         <div className="media-link-docs w-100 py-3">
           <p className="mb-0 text-danger">
             <ThumbDownAltIcon className="mx-3" fontSize="small" />
-            Report {selectedUser?.user.username}
+            Report {selectedUser?.username}
           </p>
         </div>
         <div className="className-black-space-needed"></div>

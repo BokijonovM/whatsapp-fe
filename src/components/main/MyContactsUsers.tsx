@@ -83,7 +83,7 @@ function MyContactsUsers() {
                   <div
                     key={i}
                     className={
-                      selectedUser?.user.username === member.username
+                      selectedUser?.username === member.username
                         ? "users-btn-divSel py-3"
                         : "users-btn-div py-3"
                     }
