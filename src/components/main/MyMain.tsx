@@ -66,8 +66,6 @@ function MyMain() {
     (state) => (state as IInitialState).selection.allChats
   );
 
-
-  
   // useEffect(() => {
   //   );
 
@@ -175,16 +173,20 @@ function MyMain() {
     }
   };
 
-  
-  const sendMessage = () => {  
+  const sendMessage = () => {
     try {
-      setMessage("")
-      dispatch(sendMessageAction({chatId:activeChatId, message:{sender:myInfo?._id,content:message}}))
-      console.log("message send")
+      setMessage("");
+      dispatch(
+        sendMessageAction({
+          chatId: activeChatId,
+          message: { sender: myInfo?._id, content: message },
+        })
+      );
+      console.log("message send");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -315,19 +317,37 @@ function MyMain() {
                   chat, not even WhatsApp, can read or listen to them. Click to
                   lear more.
                 </p>
-                {(allChats as IChatArray).filter(chat=> chat._id === activeChatId).map(item => item.messages.map((msg, i:number) =>   <div key={i}>
-                <p className="other-messages-text mb-0 text-white">{msg.content?.text}</p>
-                <p className="my-messages-text mb-0 text-white" >other msg</p>
-                </div>))}
+                {(allChats as IChatArray)
+                  .filter((chat) => chat._id === activeChatId)
+                  .map((item) =>
+                    item.messages.map((msg, i: number) => (
+                      <div key={i}>
+                        {msg.sender.username === username ? (
+                          <p className="my-messages-text mb-0 text-white">
+                            {msg.content?.text}
+                          </p>
+                        ) : (
+                          <p className="other-messages-text mb-0 text-white">
+                            {msg.content?.text}
+                          </p>
+                        )}
+                      </div>
+                    ))
+                  )}
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">
               <InsertEmoticonIcon className="text-light" />
               <AttachmentIcon className="text-light" />
-              <Form.Group onSubmit={() => sendMessage()} controlId="formBasicText">
+              <Form.Group
+                onSubmit={() => sendMessage()}
+                controlId="formBasicText"
+              >
                 <Form.Control
                   onChange={(e) => setMessage(e.target.value)}
-                  onKeyDown={(e) => {e.key ==="Enter" && message.length>0 && sendMessage()}}
+                  onKeyDown={(e) => {
+                    e.key === "Enter" && message.length > 0 && sendMessage();
+                  }}
                   className="form-for-msg  shadow-none text-white"
                   type="text"
                   placeholder="Type a message"
