@@ -58,6 +58,8 @@ function MyMain() {
     (state) => (state as IInitialState).userMe.username
   );
 
+  const userMe = useSelector((state) => (state as IInitialState).userMe);
+
   const activeChatId = useSelector(
     (state) => (state as IInitialState).selection.activeChatId
   );
@@ -326,9 +328,14 @@ function MyMain() {
                           {msg.content?.text}
                         </p>
 
-                        <p className="other-messages-text mb-0 text-white">
+                        <p
+                          className={
+                            msg.sender._id === userMe._id
+                              ? "d-none"
+                              : "other-messages-text mb-0 text-white"
+                          }
+                        >
                           {msg.content?.text}
-                          
                         </p>
                       </div>
                     ))
