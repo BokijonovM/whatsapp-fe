@@ -24,6 +24,7 @@ import {
   setInitSocketAction,
   sendMessageAction,
   allChatsAction,
+  setUserInfo,
 } from "../../redux/actions/index";
 import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -100,10 +101,11 @@ function MyMain() {
         let data = await res.json();
         console.log(data);
         setMyInfo(data.user);
-        dispatch(setUsernameAction(data.user.username));
-        dispatch(setUserAvatarAction(data.user.avatar));
-        dispatch(setUserEmailAction(data.user.email));
-        dispatch(setUserRefreshTokenAction(data.user.refreshToken));
+        dispatch(setUserInfo(data.user))
+        // dispatch(setUsernameAction(data.user.username));
+        // dispatch(setUserAvatarAction(data.user.avatar));
+        // dispatch(setUserEmailAction(data.user.email));
+        // dispatch(setUserRefreshTokenAction(data.user.refreshToken));
       } else {
         console.log("fetch me failed!");
       }
@@ -184,6 +186,9 @@ function MyMain() {
           message: { sender: userMe?._id, content: message },
         })
       );
+      dispatch(
+        { type: "NEW_MESSAGE", payload: { sender: userMe?._id, content: message }}
+      )
       console.log("message send");
     } catch (error) {
       console.log(error);
@@ -324,7 +329,7 @@ function MyMain() {
                   .map((item) =>
                     item.messages.map((msg, i: number) => (
                       <div key={i} className="w-100 d-flex flex-column">
-                        <p onClick={() => console.log()} className= {msg?.sender._id === userMe._id
+                        <p onClick={() => console.log()} className= {msg?.sender._id === userMe?._id
                               ? "my-messages-text mb-0 text-white"
                               : "other-messages-text mb-0 text-white"
                             }>

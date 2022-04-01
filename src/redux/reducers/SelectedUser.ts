@@ -29,9 +29,10 @@ export const SingleUserReducer = (
     case NEW_MESSAGE:
       // find the chat with id a.payload.chatId
       // append the a.payload.message in the chat
+      console.log("NEWMESSAGE",state, action)
        return {
          ...state,
-         allChat : state.allChat.find((chat:IChat)=> chat._id === action.payload.chatId).messages.concat(action.payload.message)
+         allChats: (state.allChats.find((chat:IChat)=> chat._id === state.activeChatId).messages ?? []).concat(action.payload.message)
        }
       
 

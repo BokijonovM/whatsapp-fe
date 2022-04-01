@@ -45,6 +45,11 @@ const userReducer = (state = initialState.userMe, action: any) => {
       return state
     
 
+      case "SET_USER_INFO":
+        return {
+          ...state,
+          ...action.payload 
+        }
     case SET_USER_NAME:
       return {
         ...state,

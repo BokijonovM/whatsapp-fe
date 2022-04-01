@@ -30,6 +30,10 @@ export const setUserAvatarAction = (avatar: string) => ({
   type: SET_USER_AVATAR,
   payload: avatar,
 });
+export const setUserInfo = (userInfo: string) => ({
+  type: "SET_USER_INFO",
+  payload: userInfo,
+});
 export const setUserEmailAction = (email: string) => ({
   type: SET_USER_EMAIL,
   payload: email,

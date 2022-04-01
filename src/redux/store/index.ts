@@ -17,6 +17,7 @@ export const initialState: IInitialState | any = {
     avatar: "",
     refreshToken: "",
     socket: "",
+    _id:""
   },
   selection:{
 
