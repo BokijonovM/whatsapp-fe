@@ -321,16 +321,23 @@ function MyMain() {
                   .filter((chat) => chat._id === activeChatId)
                   .map((item) =>
                     item.messages.map((msg, i: number) => (
-                      <div key={i}>
-                        {msg.sender.username === username ? (
-                          <p className="my-messages-text mb-0 text-white">
-                            {msg.content?.text}
-                          </p>
-                        ) : (
-                          <p className="other-messages-text mb-0 text-white">
-                            {msg.content?.text}
-                          </p>
-                        )}
+                      <div className="w-100 d-flex flex-column">
+                        <p className="my-messages-text mb-0 text-white">
+                          {/* {msg.content?.text} */}
+                          my msg Lorem ipsum dolor sit amet consectetur
+                          adipisicing elit. Accusantium hic placeat ducimus,
+                          laboriosam fugiat similique nostrum atque nihil
+                          dolorem, sunt, debitis quo repudiandae vero quis?
+                          Eligendi iste nesciunt omnis, beatae labore nostrum
+                          dignissimos, molestias, aperiam hic possimus aliquam
+                          veritatis necessitatibus.
+                          skdfjhskfhskdfhskdfsjhfksdfhskfjhskfhskfhskdfskdfhsdkjfhsdkjfshdkfhsdkfhfjskfsdkfh
+                        </p>
+
+                        <p className="other-messages-text mb-0 text-white">
+                          {/* {msg.content?.text} */}
+                          other msg
+                        </p>
                       </div>
                     ))
                   )}

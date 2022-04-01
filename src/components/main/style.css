@@ -179,7 +179,6 @@
   display: none;
 }
 .my-messages-text {
-  margin-left: auto;
   margin-right: 30px;
   color: white;
   background-color: #005c4b;
@@ -188,17 +187,25 @@
   margin-top: 5px;
   margin-bottom: 5px;
   border-bottom-right-radius: 0;
+  text-align: end;
+  max-width: 50%;
+  min-width: 50%;
+  margin-left: auto;
+  overflow-wrap: break-word;
 }
 .other-messages-text {
   margin-right: auto;
   color: white;
   background-color: #3c3c3e;
   margin-left: 30px;
+  overflow-wrap: break-word;
   padding: 4px 14px;
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 5px;
   border-top-left-radius: 0;
+  max-width: 50%;
+  text-align: start;
 }
 .search-names-in2nd-header {
   color: white !important;
