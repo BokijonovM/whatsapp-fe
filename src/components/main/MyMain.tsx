@@ -23,6 +23,7 @@ import {
   selectUserAction,
   setInitSocketAction,
   sendMessageAction,
+  allChatsAction,
 } from "../../redux/actions/index";
 import Moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,7 +50,6 @@ function MyMain() {
 
   // chats
   const [message, setMessage] = useState<string>("");
-  const [allChats, setAllChats] = useState<IChatArray>([]);
 
   const selectedUser = useSelector(
     (state) => (state as IInitialState).selection.selectedUser
@@ -58,9 +58,14 @@ function MyMain() {
     (state) => (state as IInitialState).userMe.username
   );
 
-  const activeChat = useSelector(
-    (state) => (state as IInitialState).selection.activeChat
+  const activeChatId = useSelector(
+    (state) => (state as IInitialState).selection.activeChatId
   );
+
+  const allChats = useSelector(
+    (state) => (state as IInitialState).selection.allChats
+  );
+
 
   
   // useEffect(() => {
@@ -161,7 +166,7 @@ function MyMain() {
       if (res.ok) {
         let data = await res.json();
         console.log("all msg", data.messages);
-        setAllChats(data.messages);
+        dispatch(allChatsAction(data.messages));
       } else {
         console.log("fetch msg error");
       }
@@ -171,12 +176,11 @@ function MyMain() {
   };
 
   
-  const sendMessage = () => {
-    
+  const sendMessage = () => {  
     try {
-      dispatch(sendMessageAction({chatId:activeChat._id, message:{sender:myInfo?._id,content:message}}))
-      console.log("message send")
       setMessage("")
+      dispatch(sendMessageAction({chatId:activeChatId, message:{sender:myInfo?._id,content:message}}))
+      console.log("message send")
     } catch (error) {
       console.log(error);
     }
@@ -311,10 +315,10 @@ function MyMain() {
                   chat, not even WhatsApp, can read or listen to them. Click to
                   lear more.
                 </p>
-                {activeChat.messages.map((msg, i) =>   <div key={i}>
+                {(allChats as IChatArray).filter(chat=> chat._id === activeChatId).map(item => item.messages.map((msg, i:number) =>   <div key={i}>
                 <p className="other-messages-text mb-0 text-white">{msg.content?.text}</p>
                 <p className="my-messages-text mb-0 text-white" >other msg</p>
-                </div>)}
+                </div>))}
               </div>
             </Row>
             <Row className="col-2-row-3-type-msg">

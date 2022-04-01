@@ -18,6 +18,10 @@ function MyContactsUsers() {
     (state) => (state as IInitialState).selection.selectedUser
   );
   
+  const userMe = useSelector(
+    (state) => (state as IInitialState).userMe
+  );
+
   const fetchChatHistory = async () => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/chats`, {
@@ -65,30 +69,34 @@ function MyContactsUsers() {
         ? ""
         : allChats?.map((chat, i) => {
             return (
-              <div
-                key={i}
-                className={
-                  selectedUser?.user._id == chat._id
-                    ? "users-btn-divSel py-3"
-                    : "users-btn-div py-3"
-                }
-                // className="users-btn-div py-3"
-                onClick={() => {
-                  dispatch(selectUserAction(chat.members[1]));
-                  dispatch(setActiveChatAction(chat));
-                  setSelected(true);
-                }}
-              >
-                <Avatar alt="Remy Sharp" src={chat.members[1].avatar} />
-                <h6 className="text-light mb-0 ml-2">
-                  {chat.members[1].username}
-                </h6>
-                <p className="mb-0 msg-sent-time text-muted ml-auto">
-                  {Moment(chat.members[1].updatedAt).format("HH:mm")}
-                  {/* {user.updatedAt} */}
-                </p>
-              </div>
-            );
+              chat.members.filter(member => member._id !== userMe._id).map(member => 
+               <div className={userMe.username === member.username ? "d-none" : ""}> 
+                 <div
+               key={i}
+               className={
+                 selectedUser?.user._id === chat._id
+                 ? "users-btn-divSel py-3"
+                 : "users-btn-div py-3"
+               }
+               // className="users-btn-div py-3"
+               onClick={() => {
+                 dispatch(selectUserAction(member));
+                 dispatch(setActiveChatAction(chat._id));
+                 setSelected(true);
+               }}
+               >
+               <Avatar alt="Remy Sharp" src={member.avatar} />
+               <h6 className="text-light mb-0 ml-2">
+                 {member.username}
+               </h6>
+               <p className="mb-0 msg-sent-time text-muted ml-auto">
+                 {Moment(chat.members[1].updatedAt).format("HH:mm")}
+                 {/* {user.updatedAt} */}
+               </p>
+             </div>
+             </div>
+            )
+            )
           })}
     </div>
   );

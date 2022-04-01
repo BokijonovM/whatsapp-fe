@@ -1,12 +1,13 @@
-import { IChat } from "./IChat";
+import { IChat, IChatArray } from "./IChat";
 import { IUser } from "./IUser";
 import { userObject } from "./IUser";
 
 export interface IInitialState {
   userMe: IUser;
   selection :{
-    activeChat: IChat
+    activeChatId: string
     selectedUser: userObject | null;
+    allChats : IChatArray
   }
   chat: {
     selected: any | null;

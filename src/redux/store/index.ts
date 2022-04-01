@@ -21,8 +21,8 @@ export const initialState: IInitialState | any = {
   selection:{
 
     selectedUser: null,
-    activeChats: [],
-    socketChats:[]
+    activeChatId: "",
+    allChats:[]
     // socket: null,
     // chat: {
       //   selected: null,

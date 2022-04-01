@@ -1,16 +1,9 @@
+import { IMsg } from "./IMsg";
 import { userObjectTest } from "./IUser";
 
 export interface IChat {
-  _id?: string;
+  _id: string;
   members: userObjectTest[];
-  messages: [
-    {
-      sender: userObjectTest;
-      content: {
-        text: string;
-        media: string;
-      };
-    }
-  ];
+  messages: IMsg[];
 }
 export type IChatArray = IChat[];

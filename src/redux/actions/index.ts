@@ -1,16 +1,17 @@
-import { IChat } from "../../types/IChat";
+import { IChat, IChatArray } from "../../types/IChat";
 import { INewChat } from "../../types/IMsg";
 
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_AVATAR = "SET_USER_AVATAR";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_REFRESH_TOKEN = "SET_USER_REFRESH_TOKEN";
+export const NEW_MESSAGE = "NEW_MESSAGE"
 
 export const ACTIONS = {
-  SET_ACTIVE_CHAT: "SET_ACTIVE_CHAT",
+  SET_ACTIVE_CHAT_ID: "SET_ACTIVE_CHAT",
   SET_HISTORY: "SET_HISTORY",
-  NEW_MESSAGE: "NEW_MESSAGE",
   NEW_CHAT: "NEW_CHAT",
+  ALL_CHATS : "ALL_CHATS"
 };
 export const INIT_SOCKET = "INIT_SOCKET";
 export const LOGGED_IN = "LOGGED_IN";
@@ -54,7 +55,12 @@ export const sendMessageAction = (sendMessage: INewChat) => ({
   payload: sendMessage,
 });
 
-export const setActiveChatAction = (selectedChat: IChat) => ({
-  type: ACTIONS.SET_ACTIVE_CHAT,
-  payload: selectedChat,
+export const setActiveChatAction = (selectedChatId: string) => ({
+  type: ACTIONS.SET_ACTIVE_CHAT_ID,
+  payload: selectedChatId,
+});
+
+export const allChatsAction = (allChats: IChatArray) => ({
+  type: ACTIONS.ALL_CHATS,
+  payload: allChats,
 });

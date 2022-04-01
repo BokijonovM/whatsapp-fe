@@ -1,4 +1,5 @@
 export interface IMsg {
+  _id:string
   sender: string;
   timestamp: Date;
   content: {
@@ -6,4 +7,4 @@ export interface IMsg {
     media: string;
   };
 }
-export interface INewChat {}
+export interface INewChat{}

@@ -6,14 +6,15 @@ import Avatar from "@mui/material/Avatar";
 function UsersList() {
   const [allUsers, setAllUsers] = useState();
   const myToken = localStorage.getItem("MyAToken");
-  const dataJson = JSON.parse(JSON.stringify(myToken));
+  const accessToken = JSON.parse(JSON.stringify(myToken));
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (dataJson) {
-      fetchChats(dataJson);
+    if (accessToken) {
+      fetchChats(accessToken);
     }
   }, []);
+
   const fetchChats = async (token: string) => {
     try {
       let res = await fetch(`${process.env.REACT_APP_PROD_API_URL}/users`, {
@@ -33,6 +34,7 @@ function UsersList() {
       console.log(error);
     }
   };
+  
   return (
     <div>
       <div className="users-btn-div">
